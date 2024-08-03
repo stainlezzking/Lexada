@@ -4,6 +4,12 @@
 
 @layer components {
   .button {
-    @apply bg-main rounded-[5px] block py-3 px-6;
+    @apply bg-main rounded-[5px] block py-3 px-6 hover:bg-primary;
+  }
+  .page-padding {
+    @apply px-[20px] md:px-10;
+  }
+  .title {
+    @apply font-black text-2xl md:text-[40px]/[48px] text-main uppercase;
   }
 }
