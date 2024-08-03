@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className={`fixed top-0  w-full h-screen z-10 left-0 transition-transform  ${!menu && "-translate-x-full"}`}>
         <div className="relative h-full w-full">
           {/* <span className="bg-main/30 absolute top-0 left-0 w-screen h-screen cursor-pointer"></span> */}
-          <div className="bg-white absolute h-screen w-full md:w-1/3 gap-y-10 flex flex-col top-0 left-0">
+          <div className="bg-white absolute h-screen w-full gap-y-10 flex flex-col top-0 left-0">
             <div onClick={() => setMenu(false)} className="cursor-pointer text-3xl w-fit ms-auto p-3 text-primary">
               &#x2715;
             </div>

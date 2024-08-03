@@ -15,8 +15,14 @@ const Footer = () => {
               <p>Join our newsletter to stay up to date on features and releases.</p>
               <div>
                 <div className="flex gap-x-2 md:gap-x-4">
-                  <input type="text" className="w-full max-w-[650px] px-3 rounded-[5px] border border-text block" />
-                  <button className="border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]">Subscribe</button>
+                  <input
+                    type="text"
+                    placeholder="Enter your email address"
+                    className="w-full max-w-[650px] px-3 rounded-[5px] border border-text block"
+                  />
+                  <button type="button" className="border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]">
+                    Subscribe
+                  </button>
                 </div>
               </div>
               <p className="text-sm">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
