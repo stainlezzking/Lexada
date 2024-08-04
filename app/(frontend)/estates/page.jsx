@@ -3,7 +3,7 @@ import Listing from "@/components/listing";
 import Section from "@/components/section";
 import image1 from "@/public/firstimage.png";
 
-const estates = () => {
+const Estates = () => {
   return (
     <div className="space-y-28">
       <Section className="space-y-16">
@@ -39,4 +39,4 @@ const estates = () => {
   );
 };
 
-export default estates;
+export default Estates;
