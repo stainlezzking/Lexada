@@ -12,6 +12,12 @@ const construct = {
   description:
     "The land is really green here! Oasis Garden is a charming Estate with spectacular, panoramic views and a hideout from noise and chaos associated with most part of Lagos. This estate offers 500 sqm (50ft by 100ft) generous spaces to move about (without losing that quaint, cozy atmosphere). Wake up each morning to awe-inspiring sunrises in the North side of the Lekki Lagoon and drift off to sleep each night with the tranquil sounds of nature. Situated in a friendly community with exciting neighborhoods such as Atlantic Hall School, Gov. Ambode'S Estate, Epe Resort, St. Augustine University and Otedola Housing Estate..",
 };
+
+export const generateMetadata = () => ({
+  title: `${construct.title} Properties with Lexada Realestate`,
+  description: "",
+});
+
 const Page = () => {
   return (
     <>
@@ -79,8 +85,8 @@ const Page = () => {
               <div className="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-10">
                 {Array(6)
                   .fill(1)
-                  .map((ft) => (
-                    <div className="col-span-1 space-y-2">
+                  .map((ft, _) => (
+                    <div className="col-span-1 space-y-2" key={_}>
                       <div className="uppercase">Location</div>
                       <div className="flex gap-x-3">
                         <svg width="18" height="19" viewBox="0 0 18 19" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -105,8 +111,7 @@ const Page = () => {
               <div className="h-[520px] bg-background"></div>
             </div>
           </div>
-          <div className="col-span-1 lg:max-w-[600px] max-h-[700px] lg:ms-auto px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]">
-            <div className="mx-auto w-fit py-3 px-6 border border-main text-2xl text-main rounded-[5px]">Schedule a Tour</div>
+          <div className="col-span-1">
             <SchdeuleTour />
           </div>
         </div>
@@ -115,4 +120,5 @@ const Page = () => {
     </>
   );
 };
+
 export default Page;
