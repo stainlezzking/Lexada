@@ -20,7 +20,11 @@ const Footer = () => {
                     placeholder="Enter your email address"
                     className="w-full max-w-[650px] px-3 rounded-[5px] border border-text block"
                   />
-                  <button type="button" className="border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]">
+                  <button
+                    type="button"
+                    role="button"
+                    className="border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]"
+                  >
                     Subscribe
                   </button>
                 </div>

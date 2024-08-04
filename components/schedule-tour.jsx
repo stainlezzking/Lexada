@@ -43,7 +43,9 @@ const SchdeuleTour = () => {
           <input type="text" disabled className="disabled:bg-gray border border-gray rounded-lg block w-full p-2" placeholder="Adunni Terraces" />
         </div>
         <div className="col-span-full">
-          <button className="button text-white mx-auto ">Schedule</button>
+          <button type="submit" className="button text-white mx-auto ">
+            Schedule
+          </button>
         </div>
       </form>
     </div>

@@ -42,7 +42,7 @@ const Navbar = () => {
         <Link href="/more" className="button text-white max-lg:hidden">
           Read More
         </Link>
-        <button onClick={toggle} className="lg:hidden">
+        <button role="menuitem" aria-label="Toggle menu" onClick={toggle} className="lg:hidden">
           <svg className="w-8" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 10.7666V9.76656H16V10.7666H0ZM0 5.99656V4.99656H16V5.99656H0ZM0 1.22656V0.226562H16V1.22656H0Z" fill="black" />
           </svg>
