@@ -2,7 +2,9 @@
 import Link from "next/link";
 import Logo from "./logo";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 const Navbar = () => {
+  const pathname = usePathname();
   const [menu, setMenu] = useState(false);
 
   const toggle = () => setMenu((e) => !e);
@@ -14,27 +16,27 @@ const Navbar = () => {
         </div>
         <ul className="flex gap-8 max-lg:hidden">
           <li>
-            <Link className="hover:text-primary" href="/">
+            <Link className={`${pathname == "/" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/">
               Home
             </Link>
           </li>
           <li>
-            <Link className="hover:text-primary" href="/about">
+            <Link className={`${pathname == "/about" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/about">
               About
             </Link>
           </li>
           <li>
-            <Link className="hover:text-primary" href="/projects">
-              Projects
+            <Link className={`${pathname == "/estates" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/estates">
+              Estates
             </Link>
           </li>
           <li>
-            <Link className="hover:text-primary" href="/blogs">
+            <Link className={`${pathname == "/blogs" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/blogs">
               Blog
             </Link>
           </li>
           <li>
-            <Link className="hover:text-primary" href="/contact">
+            <Link className={`${pathname == "/contact" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/contact">
               Contact
             </Link>
           </li>
