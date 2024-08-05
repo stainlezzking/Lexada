@@ -1,12 +1,17 @@
 "use client";
 import Link from "next/link";
 import Logo from "./logo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 const Navbar = () => {
   const pathname = usePathname();
   const [menu, setMenu] = useState(false);
-
+  useEffect(
+    function () {
+      setMenu(false);
+    },
+    [pathname]
+  );
   const toggle = () => setMenu((e) => !e);
   return (
     <>
@@ -42,7 +47,7 @@ const Navbar = () => {
           </li>
         </ul>
         <Link href="/more" className="button text-white max-lg:hidden">
-          Read More
+          Book an Inspection
         </Link>
         <button role="menuitem" aria-label="Toggle menu" onClick={toggle} className="lg:hidden">
           <svg className="w-8" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -58,16 +63,44 @@ const Navbar = () => {
               &#x2715;
             </div>
             <div className="space-y-7">
-              <Link className="hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg" href="/">
+              <Link
+                className={` ${
+                  pathname == "/" && "font-medium text-main"
+                } hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg`}
+                href="/"
+              >
                 Home
               </Link>
-              <Link className="hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg" href="/">
+              <Link
+                className={` ${
+                  pathname == "/about" && "font-medium text-main"
+                } hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg`}
+                href="/about"
+              >
                 About
               </Link>
-              <Link className="hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg" href="/">
+              <Link
+                className={` ${
+                  pathname == "/estates" && "font-medium text-main"
+                } hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg`}
+                href="/estates"
+              >
+                Estates
+              </Link>
+              <Link
+                className={` ${
+                  pathname == "/blogs" && "font-medium text-main"
+                } hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg`}
+                href="/blogs"
+              >
                 Blog
               </Link>
-              <Link className="hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg" href="/">
+              <Link
+                className={` ${
+                  pathname == "/contact" && "font-medium text-main"
+                } hover:text-primary px-5 border-b border-b-gray/40 pb-2 hover:underline block text-lg`}
+                href="/contact"
+              >
                 Contact
               </Link>
             </div>
