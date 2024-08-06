@@ -30,7 +30,7 @@ yarn-error.log*
 
 # keys
 
-firebase-admin.json
+**/firebase-admin.json
 
 # vercel
 .vercel
