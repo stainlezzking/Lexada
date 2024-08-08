@@ -13,6 +13,8 @@ export const db = getFirestore();
 // const schema = {
 //   title: String,
 //   location: String,
+//   price:Number,
+//   description:String,
 //   images: [String],
 //   features: [String],
 //   youtube: String,
