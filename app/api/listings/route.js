@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
 import { db } from "@/app/config/firebase";
-import { upload } from "@/app/config/multer";
 
 const COLLECTION = {
   list: "listings",
 };
+
 export async function GET(req, res) {
   try {
     const arr = [];
@@ -21,10 +21,11 @@ export async function GET(req, res) {
 export async function POST(req, res) {
   try {
     const data = await req.json();
-    // first upload the properties using cloudinary and then add the data here
-    const docRef = db.collection(COLLECTION.list).add(data);
+    console.log(data);
+    const docRef = await db.collection(COLLECTION.list).add(data);
     return NextResponse.json({ success: true, id: docRef.id });
   } catch (e) {
+    console.log(e);
     return NextResponse.json({ message: e, success: false });
   }
 }

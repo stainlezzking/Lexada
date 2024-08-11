@@ -6,7 +6,7 @@ import { toast, Toaster } from "sonner";
 
 const PreviewImage = function ({ url, removeProduct }) {
   return (
-    <div className="col-span-1 aspect-video bg-primary rounded-md relative flex items-center justify-center">
+    <div className="col-span-1 aspect-video rounded-md relative flex items-center justify-center">
       <button
         onClick={removeProduct}
         className="absolute -top-3 -right-3 group rounded-full w-6 h-6 flex items-center justify-center bg-white shadow-sm"
@@ -20,7 +20,7 @@ const PreviewImage = function ({ url, removeProduct }) {
           />
         </svg>
       </button>
-      <img src={url} alt="" className="w-full h-full object-center object-cover" />
+      <img src={url} alt="" className="w-full aspect-[4/3] object-center object-cover" />
     </div>
   );
 };
@@ -60,7 +60,7 @@ const Dropzone = ({ productImages }) => {
           return Object.assign(file, { main: false });
         });
       }
-      setImages((prevImages) => [...prevImages, ...acceptedFiles.map((data) => ({ _id: uuidv4(), ...data, preview: URL.createObjectURL(data) }))]);
+      setImages((prevImages) => [...prevImages, ...acceptedFiles.map((data) => ({ _id: uuidv4(), file: data, preview: URL.createObjectURL(data) }))]);
     },
     [images]
   );
@@ -100,7 +100,9 @@ const Dropzone = ({ productImages }) => {
               <p>Choose a file or drag & drop it here.</p>
               <p>JPEG, PNG, and MP4 formats, up to 50 MB.</p>
             </div>
-            <button className="border border-bordegray67 rounded-lg p-2">Browse Files</button>
+            <button type="button" className="border border-bordegray67 rounded-lg p-2">
+              Browse Files
+            </button>
           </>
         )}
       </div>

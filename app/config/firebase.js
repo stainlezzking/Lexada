@@ -1,12 +1,14 @@
-import { initializeApp, cert } from "firebase-admin/app";
+import { initializeApp, cert, getApps } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
 import serviceAccount from "./firebase-admin.json";
 
-initializeApp({
-  credential: cert(serviceAccount),
-  databaseURL: `https://${process.env.project_id}.firebaseio.com`,
-});
+if (!getApps().length) {
+  initializeApp({
+    credential: cert(serviceAccount),
+    databaseURL: `https://${process.env.project_id}.firebaseio.com`,
+  });
+}
 
 export const db = getFirestore();
 

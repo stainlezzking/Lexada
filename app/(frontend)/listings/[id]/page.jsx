@@ -47,28 +47,39 @@ const Page = () => {
           </p>
         </div>
 
-        <div id="gallery" className="grid grid-cols-2 gap-x-8 h-screen max-h-[600px] bg-primary">
-          <div className="col-span-1 h-full">
-            {/* <Image
-            src={construct.images[0]}
-            className="w-full h-full object-cover object-center"
-            alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
-          /> */}
+        <div id="gallery" className="grid grid-cols-3 gap-x-8 h-screen max-h-[600px]">
+          <div className="col-span-2  relative">
+            <Image
+              src={construct.images[0]}
+              fill
+              className="w-full h-full object-cover object-center"
+              alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
+            />
           </div>
           <div className="col-span-1 flex flex-col gap-y-6 ">
-            <div className="bg-black h-1/2 overflow-hidden">
-              {/* <Image
-              src={construct.images[1]}
-              className="w-full object-cover object-center block"
-              alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
-            /> */}
+            <div className=" h-1/3  relative">
+              <Image
+                fill
+                src={construct.images[1]}
+                className="max-h-full object-cover object-center block"
+                alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
+              />
             </div>
-            <div className="bg-gray h-1/2 overflow-hidden">
-              {/* <Image
-              src={construct.images[2]}
-              className="w-full object-cover object-center"
-              alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
-            /> */}
+            <div className="h-1/3  relative">
+              <Image
+                fill
+                src={construct.images[2]}
+                className="max-h-full object-cover object-center"
+                alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
+              />
+            </div>
+            <div className="h-1/3  relative">
+              <Image
+                fill
+                src={construct.images[2]}
+                className="max-h-full object-cover object-center aspect-video"
+                alt={`${construct.title} properties by Lexada Real Estate, Located in ${construct.location}`}
+              />
             </div>
           </div>
         </div>
