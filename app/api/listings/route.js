@@ -1,9 +1,6 @@
 import { NextResponse } from "next/server";
 import { db } from "@/app/config/firebase";
-
-const COLLECTION = {
-  list: "listings",
-};
+import COLLECTION from "../variables";
 
 export async function GET(req, res) {
   try {
@@ -21,7 +18,6 @@ export async function GET(req, res) {
 export async function POST(req, res) {
   try {
     const data = await req.json();
-    console.log(data);
     const docRef = await db.collection(COLLECTION.list).add(data);
     return NextResponse.json({ success: true, id: docRef.id });
   } catch (e) {

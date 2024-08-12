@@ -1,6 +1,6 @@
 "use client";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import parse from "html-react-parser";
+import parse, { attributesToProps } from "html-react-parser";
 import Dropzone from "@/components/upload";
 import { uploadImageCloudinary } from "@/lib/cloudinary.client";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 const NewProperty = () => {
   const [images, setImages] = useState([]);
@@ -81,6 +82,18 @@ const NewProperty = () => {
           </div>
         </div>
       </nav>
+      {isSubmitting && (
+        <div className="bg-main/40 w-screen h-screen fixed top-0 left-0 flex items-center justify-center z-10">
+          <svg fill="#ffffff" className="w-20 animate-spin" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+            <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+            <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <title>spinner-one-third</title>
+              <path d="M16 0.75c-0.69 0-1.25 0.56-1.25 1.25s0.56 1.25 1.25 1.25v0c7.042 0.001 12.75 5.71 12.75 12.751 0 3.521-1.427 6.709-3.734 9.016v0c-0.226 0.226-0.365 0.538-0.365 0.883 0 0.69 0.56 1.25 1.25 1.25 0.346 0 0.659-0.14 0.885-0.367l0-0c2.759-2.76 4.465-6.572 4.465-10.782 0-8.423-6.828-15.251-15.25-15.251h-0z"></path>
+            </g>
+          </svg>
+        </div>
+      )}
       <div className="md:page-padding ">
         <main className="px-7 pt-[49px] border-x-2 border-x-gray">
           <form onSubmit={handleSubmit(onSubmitHandler)} className="grid gap-y-10 grid-cols-1 md:grid-cols-2 gap-x-8 max-w-[1000px]">
@@ -132,7 +145,7 @@ const NewProperty = () => {
                     <input type="radio" {...register("status", { required: true })} value="sale" id="r1" />
                   </div>
                   <div className="flex w-full items-center justify-between">
-                    <label htmlFor="r2">On sale</label>
+                    <label htmlFor="r2">Sold out</label>
                     <input type="radio" {...register("status", { required: true })} value="sold out" id="r2" />
                   </div>
                   {/* <RadioGroup className={"w-full " + (errors.status && "border border-red-200")}>
@@ -161,9 +174,77 @@ const NewProperty = () => {
                 <h1 className="text-lg text-main font-medium">Embeds</h1>
 
                 <div className="space-y-1">
-                  <label className="block">Virtual Tour (Youtube) </label>
+                  <label className="flex gap-x-2 items-center">
+                    Virtual Tour (Youtube)
+                    <span>
+                      <TooltipProvider delayDuration={300}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <svg className="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                              <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                              <g id="SVGRepo_iconCarrier">
+                                <path
+                                  fillRule="evenodd"
+                                  clipRule="evenodd"
+                                  d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z"
+                                  fill="#1C274C"
+                                ></path>
+                              </g>
+                            </svg>
+                          </TooltipTrigger>
+                          <TooltipContent align="start">
+                            <ul className="list-disc ps-[15px] space-y-1 py-[10px] text-text">
+                              <li>Open the youtube video</li>
+                              <li>Click on share</li>
+                              <li>Click on embed</li>
+                              <li>Copy the link and place here</li>
+                            </ul>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </span>
+                  </label>
                   <textarea
                     {...register("youtube")}
+                    className={`rounded-2xl border ${!errors.description ? "border-gray" : "border-red-600"} text-main block w-full p-2 `}
+                    rows="5"
+                  ></textarea>
+                </div>
+                <div className="space-y-1">
+                  <label className="flex gap-x-2 items-center">
+                    Embed A Map
+                    <span>
+                      <TooltipProvider delayDuration={300}>
+                        <Tooltip>
+                          <TooltipTrigger asChild>
+                            <svg className="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                              <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                              <g id="SVGRepo_iconCarrier">
+                                <path
+                                  fillRule="evenodd"
+                                  clipRule="evenodd"
+                                  d="M22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z"
+                                  fill="#1C274C"
+                                ></path>
+                              </g>
+                            </svg>
+                          </TooltipTrigger>
+                          <TooltipContent align="start">
+                            <ul className="list-disc ps-[15px] space-y-1 py-[10px] text-text">
+                              <li>In your laptop web browser</li>
+                              <li>Open the location in google map (browser)</li>
+                              <li>Click on share and embed a map</li>
+                              <li>Paste the code here</li>
+                            </ul>
+                          </TooltipContent>
+                        </Tooltip>
+                      </TooltipProvider>
+                    </span>
+                  </label>
+                  <textarea
+                    {...register("map")}
                     className={`rounded-2xl border ${!errors.description ? "border-gray" : "border-red-600"} text-main block w-full p-2 `}
                     rows="5"
                   ></textarea>
@@ -233,7 +314,41 @@ const NewProperty = () => {
                   {Boolean(watch("youtube")?.trim().length) && (
                     <div className="space-y-1">
                       <h3 className="text-lg text-main">Virtual Tour</h3>
-                      <div>{parse(watch("youtube"))}</div>
+                      <div>
+                        {parse(watch("youtube"), {
+                          replace(domNode) {
+                            if (domNode && domNode.attribs && domNode.name == "iframe" && (domNode.attribs["width"] || domNode.attribs["height"])) {
+                              delete domNode.attribs.width;
+                              delete domNode.attribs.height;
+                              return (
+                                <iframe {...attributesToProps(domNode.attribs)} className="w-full aspect-video">
+                                  {domNode.children}
+                                </iframe>
+                              );
+                            }
+                          },
+                        })}
+                      </div>
+                    </div>
+                  )}
+                  {Boolean(watch("map")?.trim().length) && (
+                    <div className="space-y-1">
+                      <h3 className="text-lg text-main">Location</h3>
+                      <div>
+                        {parse(watch("map"), {
+                          replace(domNode) {
+                            if (domNode && domNode.attribs && domNode.name == "iframe" && (domNode.attribs["width"] || domNode.attribs["height"])) {
+                              delete domNode.attribs.width;
+                              delete domNode.attribs.height;
+                              return (
+                                <iframe {...attributesToProps(domNode.attribs)} className="w-full aspect-video">
+                                  {domNode.children}
+                                </iframe>
+                              );
+                            }
+                          },
+                        })}
+                      </div>
                     </div>
                   )}
                 </div>
