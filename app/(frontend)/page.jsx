@@ -10,7 +10,10 @@ import Service from "@/components/services";
 import Listing from "@/components/listing";
 import Blogspreview from "@/components/blogs.preview";
 import Footer from "@/components/footer";
-export default function Home() {
+import { getListings } from "../utils";
+
+export default async function Home() {
+  const properties = await getListings();
   return (
     <>
       <main>
@@ -112,17 +115,31 @@ export default function Home() {
               </h1>
               <span>Explore Our Exclusive Collection of Luxury Properties</span>
             </div>
-            <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
-              <div className="col-span-1">
-                <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
+            {properties.success ? (
+              <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
+                {properties.data.slice(0, 3).map((property, i) => (
+                  <div className="col-span-1" key={i}>
+                    <Listing
+                      src={property.images[0].url}
+                      amount={property.price}
+                      title={property.title}
+                      location={property.location}
+                      status={property.status}
+                      id={property.id}
+                    />
+                  </div>
+                ))}
+                {!properties.data.length && (
+                  <div className="h-[400px] flex items-center justify-center">
+                    <p>You have no Listing</p>
+                  </div>
+                )}
               </div>
-              <div className="col-span-1">
-                <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
+            ) : (
+              <div className="h-[400px] flex items-center justify-center">
+                <p>An Error ococured...</p>
               </div>
-              <div className="col-span-1">
-                <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
-              </div>
-            </div>
+            )}
           </Section>
           <Section className="space-y-16 bg-background">
             <div className="text-center">

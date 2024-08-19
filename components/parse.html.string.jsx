@@ -1,7 +1,7 @@
 "use client";
 import parse, { attributesToProps } from "html-react-parser";
 
-export default function ParseString({ data }) {
+export default function ParseString({ data, yt = false }) {
   return (
     <>
       {parse(data, {
@@ -10,7 +10,7 @@ export default function ParseString({ data }) {
             delete domNode.attribs.width;
             delete domNode.attribs.height;
             return (
-              <iframe {...attributesToProps(domNode.attribs)} className="w-full aspect-video">
+              <iframe {...attributesToProps(domNode.attribs)} className={`w-full ${yt ? "h-[400px] md:aspect-video" : "aspect-video"}`}>
                 {domNode.children}
               </iframe>
             );

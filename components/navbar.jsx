@@ -16,9 +16,9 @@ const Navbar = () => {
   return (
     <>
       <nav className="flex justify-between items-center py-5 text-main page-padding">
-        <div>
+        <Link href="/">
           <Logo />
-        </div>
+        </Link>
         <ul className="flex gap-8 max-lg:hidden">
           <li>
             <Link className={`${pathname == "/" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/">

@@ -10,7 +10,7 @@ export async function GET(req, res) {
       arr.push({ id: doc.id, ...doc.data() });
     });
     // perform this snapshot loop on the client
-    return NextResponse.json({ success: true, arr });
+    return NextResponse.json({ success: true, data: arr });
   } catch (e) {
     return NextResponse.json({ message: e.message, success: false });
   }

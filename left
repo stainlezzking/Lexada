@@ -1,4 +1,6 @@
 -Add a pop up animation at the bottom menu when open (maybe with a house... something smooth)
 
+- use Errorboundary to handle !response.success in details page
+- remove the dummy construct obj in the details component and the images component
 - react-easy-crop to crop images on upload
 - Home page title text
