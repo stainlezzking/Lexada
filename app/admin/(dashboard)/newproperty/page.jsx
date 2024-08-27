@@ -36,11 +36,10 @@ const NewProperty = () => {
         method: "POST",
         body: JSON.stringify(newProperty),
       }).then((d) => d.json());
-      console.log(response);
       if (!response.success) return toast.error(response.message);
+      fetch("/api/listings", { next: { revalidate: 0 } });
       router.push("/listings/" + response.id);
     } catch (e) {
-      console.log(e);
       toast.error(e.data.message);
     }
   };

@@ -22,15 +22,15 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 
-const AdminListing = ({ src, amount, title, createdAt }) => {
+const AdminListing = ({ src, amount, title, createdAt, id }) => {
   return (
     <div className="w-full border border-gray/50 rounded-[18px] p-6 space-y-7 mx-auto">
-      <div className="h-[300px]">
-        <Image src={src} className="rounded-2xl w-full h-full object-cover " alt={"image of " + title + "property by Lexada real estates"} />
+      <div className="h-[300px] relative">
+        <Image fill src={src} className="rounded-2xl w-full h-full object-cover " alt={"image of " + title + "property by Lexada real estates"} />
       </div>
       <div className="space-y-2 block ">
         <div className="flex justify-between">
-          <Link href={"/listings/1"} className="capitalize text-lg text-main hover:underline">
+          <Link href={"/listings/" + id} className="capitalize text-lg text-main hover:underline">
             {title.length > 30 ? title.slice(0, 30) + "..." : title}
           </Link>
           <AlertDialog>
@@ -49,7 +49,7 @@ const AdminListing = ({ src, amount, title, createdAt }) => {
                 <DropdownMenuLabel>Menu</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>
-                  <Link href="/admin/edit/" className="text-[#565656]">
+                  <Link href={"/admin/edit/" + id} className="text-[#565656]">
                     Edit
                   </Link>
                 </DropdownMenuItem>
@@ -61,8 +61,8 @@ const AdminListing = ({ src, amount, title, createdAt }) => {
               </DropdownMenuContent>
               <AlertDialogContent>
                 <AlertDialogHeader>
-                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-                  <AlertDialogDescription>
+                  <AlertDialogTitle className="text-main font-medium">Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription className="text-text">
                     This action cannot be undone. This will permanently delete your this property from your database.
                   </AlertDialogDescription>
                 </AlertDialogHeader>

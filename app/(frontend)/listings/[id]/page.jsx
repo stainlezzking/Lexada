@@ -21,6 +21,7 @@ const getProperty = async function (id) {
 
 const Page = async ({ params }) => {
   let property = await getProperty(params.id);
+  console.log(property);
   if (!property.success) {
     throw new Error(property.message);
     // handle with errorboundary
@@ -36,10 +37,18 @@ const Page = async ({ params }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 pb-[71px]">
           <div className="col-span-1">
-            <div className="my-[57px]">
+            <div className="my-[57px] space-y-[14px]">
               <h1 className="text-main text-2xl md:text-4xl">₦ {Number(property.data.price).toLocaleString()}</h1>
               <p className="flex gap-x-1">
-                <svg className="fill-[#959292] w-5" version="1.1" id="Filled_Icons" x="0px" y="0px" viewBox="0 0 24 24" enableBackground="new 0 0 24 24">
+                <svg
+                  className="fill-[#959292] w-5"
+                  version="1.1"
+                  id="Filled_Icons"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 24 24"
+                  enableBackground="new 0 0 24 24"
+                >
                   <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                   <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
@@ -48,7 +57,7 @@ const Page = async ({ params }) => {
                     </g>
                   </g>
                 </svg>
-                <span className="">{property.location}</span>
+                <span className="uppercase">{property.data.location}</span>
               </p>
             </div>
             <div className="space-y-4">

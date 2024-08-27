@@ -3,4 +3,5 @@
 - use Errorboundary to handle !response.success in details page
 - remove the dummy construct obj in the details component and the images component
 - react-easy-crop to crop images on upload
-- Home page title text
+- Home page title text [use Shadcn]
+- Handle Error from server API

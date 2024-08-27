@@ -1,8 +1,16 @@
+import { getListings } from "@/app/utils";
 import AdminListing from "@/components/admin-listing";
 import image1 from "@/public/firstimage.png";
 import Link from "next/link";
+import { get } from "react-hook-form";
 
-const Dashboard = () => {
+const Dashboard = async () => {
+  const properties = await getListings();
+  // handle error
+  if (!properties) {
+    return <div>505 Failed to load properties</div>;
+  }
+  const { data } = properties;
   return (
     <>
       <nav className="border-b-2 border-gray md:page-padding">
@@ -41,13 +49,17 @@ const Dashboard = () => {
                   Add New
                 </Link>
               </div>
-              {Array(6)
-                .fill(1)
-                .map((_, i) => (
-                  <div className="col-span-1" key={i}>
-                    <AdminListing createdAt=" July 1, 2016" src={image1} amount={1199000} title="Adunni Terraces" />
-                  </div>
-                ))}
+              {data.map((property, i) => (
+                <div className="col-span-1" key={i}>
+                  <AdminListing
+                    createdAt=" July 1, 2016"
+                    src={property.images[0].url}
+                    id={property.id}
+                    amount={Number(property.price)}
+                    title={property.title}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </main>
