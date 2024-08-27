@@ -212,6 +212,14 @@ const NewProperty = () => {
                   ></textarea>
                 </div>
                 <div className="space-y-1">
+                  <label className="block">Location</label>
+                  <input
+                    type="text"
+                    {...register("location", { required: "Provide a the location of the property" })}
+                    className={`rounded-2xl border ${!errors.location ? "border-gray" : "border-red-600"} text-main block w-full p-2 `}
+                  />
+                </div>
+                <div className="space-y-1">
                   <label className="flex gap-x-2 items-center">
                     Embed A Map
                     <span>
@@ -334,6 +342,7 @@ const NewProperty = () => {
                   {Boolean(watch("map")?.trim().length) && (
                     <div className="space-y-1">
                       <h3 className="text-lg text-main">Location</h3>
+                      <p>{watch("location")}</p>
                       <div>
                         {parse(watch("map"), {
                           replace(domNode) {

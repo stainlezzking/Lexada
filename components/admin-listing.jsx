@@ -1,5 +1,26 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
 
 const AdminListing = ({ src, amount, title, createdAt }) => {
   return (
@@ -12,14 +33,52 @@ const AdminListing = ({ src, amount, title, createdAt }) => {
           <Link href={"/listings/1"} className="capitalize text-lg text-main hover:underline">
             {title.length > 30 ? title.slice(0, 30) + "..." : title}
           </Link>
-          <div className="cursor-pointer p-2">
-            <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M2.09961 12.0703C2.92961 12.0703 3.59961 12.7403 3.59961 13.5703C3.59961 14.4003 2.92961 15.0703 2.09961 15.0703C1.26961 15.0703 0.599609 14.4003 0.599609 13.5703C0.599609 12.7403 1.26961 12.0703 2.09961 12.0703ZM0.599609 7.57031C0.599609 8.40031 1.26961 9.07031 2.09961 9.07031C2.92961 9.07031 3.59961 8.40031 3.59961 7.57031C3.59961 6.74031 2.92961 6.07031 2.09961 6.07031C1.26961 6.07031 0.599609 6.74031 0.599609 7.57031ZM0.599609 1.57031C0.599609 2.40031 1.26961 3.07031 2.09961 3.07031C2.92961 3.07031 3.59961 2.40031 3.59961 1.57031C3.59961 0.740313 2.92961 0.0703125 2.09961 0.0703125C1.26961 0.0703125 0.599609 0.740313 0.599609 1.57031Z"
-                fill="#0A0A0A"
-              />
-            </svg>
-          </div>
+          <AlertDialog>
+            <DropdownMenu>
+              <DropdownMenuTrigger>
+                <div className="cursor-pointer p-2">
+                  <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M2.09961 12.0703C2.92961 12.0703 3.59961 12.7403 3.59961 13.5703C3.59961 14.4003 2.92961 15.0703 2.09961 15.0703C1.26961 15.0703 0.599609 14.4003 0.599609 13.5703C0.599609 12.7403 1.26961 12.0703 2.09961 12.0703ZM0.599609 7.57031C0.599609 8.40031 1.26961 9.07031 2.09961 9.07031C2.92961 9.07031 3.59961 8.40031 3.59961 7.57031C3.59961 6.74031 2.92961 6.07031 2.09961 6.07031C1.26961 6.07031 0.599609 6.74031 0.599609 7.57031ZM0.599609 1.57031C0.599609 2.40031 1.26961 3.07031 2.09961 3.07031C2.92961 3.07031 3.59961 2.40031 3.59961 1.57031C3.59961 0.740313 2.92961 0.0703125 2.09961 0.0703125C1.26961 0.0703125 0.599609 0.740313 0.599609 1.57031Z"
+                      fill="#0A0A0A"
+                    />
+                  </svg>
+                </div>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuLabel>Menu</DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem>
+                  <Link href="/admin/edit/" className="text-[#565656]">
+                    Edit
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <AlertDialogTrigger asChild>
+                    <button className="text-[#565656]">Delete</button>
+                  </AlertDialogTrigger>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone. This will permanently delete your this property from your database.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction className="bg-red-600">
+                    <form action="">
+                      <button type="submit" className="text-white">
+                        Continue
+                      </button>
+                    </form>
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </DropdownMenu>
+          </AlertDialog>
         </div>
         <div className="flex justify-between">
           <h3 className="group-hover:underline">₦{amount.toLocaleString()}</h3>
