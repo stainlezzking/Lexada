@@ -5,22 +5,35 @@ import Dropzone from "@/components/upload";
 import { uploadImageCloudinary } from "@/lib/cloudinary.client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
+import { set, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { v4 as uuidv4 } from "uuid";
+import { deleteOldImages } from "./functions";
 
-const NewProperty = () => {
+export const metadata = {
+  title: "Edit Property | Lexada Real Estate",
+};
+
+const EditProperty = ({ property }) => {
   const [images, setImages] = useState([]);
+  const [oldImages, setOldImages] = useState(property.images);
+  const [deletedImages, setDeletedImages] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
-
   const router = useRouter();
+
+  useEffect(() => {
+    setOldImages(property.images.map((img) => ({ preview: img.url, _id: uuidv4() })));
+  }, []);
   const {
     register,
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: property,
+  });
 
   const onSubmitHandler = async function (data) {
     setIsSubmitting(true);
@@ -62,7 +75,7 @@ const NewProperty = () => {
               />
             </svg>
 
-            <h1 className="text-3xl text-main">New Property</h1>
+            <h1 className="text-3xl text-main">Edit Property</h1>
           </Link>
           <div className="flex items-center gap-x-2">
             <div className="p-2 bg-background rounded-full">
@@ -171,6 +184,26 @@ const NewProperty = () => {
                 <div>
                   <Dropzone productImages={[images, setImages]} />
                 </div>
+                <div className="space-y-4">
+                  <h1 className="text-lg text-main font-medium">Old Images</h1>
+                  <div className="grid grid-cols-2 gap-4">
+                    {oldImages.map((img) => (
+                      <div key={img._id} className="relative">
+                        <img src={img.preview} alt="" className="w-full aspect-[4/3] object-center object-cover" />
+                        <button
+                          type="button"
+                          onClick={() => deleteOldImages(setDeletedImages, setOldImages, img._id)}
+                          className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1"
+                        >
+                          <svg className="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19 6L5 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M5 6L19 18" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                          </svg>
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
               <div className="space-y-5">
                 <h1 className="text-lg text-main font-medium">Embeds</h1>
@@ -267,7 +300,7 @@ const NewProperty = () => {
               </div>
               <div className="space-y-3 p-[20px]">
                 <div className="">
-                  {!Boolean(images.length) ? (
+                  {!Boolean(images.length) && !Boolean(oldImages.length) ? (
                     <div className="bg-main/20 rounded-md flex items-center justify-center aspect-[4/3] w-full">
                       <svg width="120px" height="120px" viewBox="0 0 24 24" fill="none" stroke="#000000">
                         <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
@@ -285,7 +318,7 @@ const NewProperty = () => {
                     </div>
                   ) : (
                     <img
-                      src={images[0].preview}
+                      src={images[0]?.preview || oldImages[0].preview}
                       className="rounded-[16px] w-full aspect-[4/3] object-cover object-center border border-gray"
                       alt="The picture of your new property"
                     />
@@ -294,7 +327,7 @@ const NewProperty = () => {
                     <div className="flex gap-x-[14px] items-center mt-2">
                       <h4 className="font-medium text-main">File Size:</h4>
                       <div className="border rounded-full border-gray w-[40px] h-[40px] flex items-center justify-center text-xs">
-                        {Math.round(images.reduce((acc, img) => acc + img.file.size, 0) / 1000000)} mb
+                        {Math.round(images.reduce((acc, img) => acc + img.file?.size, 0) / 1000000)} mb
                       </div>
                     </div>
                   )}
@@ -384,4 +417,4 @@ const NewProperty = () => {
   );
 };
 
-export default NewProperty;
+export default EditProperty;

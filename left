@@ -5,3 +5,4 @@
 - react-easy-crop to crop images on upload
 - Home page title text [use Shadcn]
 - Handle Error from server API
+- generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
