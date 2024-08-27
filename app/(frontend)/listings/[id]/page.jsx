@@ -5,15 +5,6 @@ import SchdeuleTour from "@/components/schedule-tour";
 import Footer from "@/components/footer";
 import ParseString from "@/components/parse.html.string";
 import Gallery from "@/components/details.images";
-const construct = {
-  title: "Adunni Terraces",
-  location: "poke, epe",
-  size: "3 Bedrooms",
-  images: [house, house, house, house],
-  // minimum of 3 images, landscape images are advised
-  description:
-    "The land is really green here! Oasis Garden is a charming Estate with spectacular, panoramic views and a hideout from noise and chaos associated with most part of Lagos. This estate offers 500 sqm (50ft by 100ft) generous spaces to move about (without losing that quaint, cozy atmosphere). Wake up each morning to awe-inspiring sunrises in the North side of the Lekki Lagoon and drift off to sleep each night with the tranquil sounds of nature. Situated in a friendly community with exciting neighborhoods such as Atlantic Hall School, Gov. Ambode'S Estate, Epe Resort, St. Augustine University and Otedola Housing Estate..",
-};
 
 export const generateMetadata = async ({ params }) => {
   let property = await getProperty(params.id);
@@ -43,8 +34,23 @@ const Page = async ({ params }) => {
 
         <Gallery images={property.data.images} location={property.data.location} title={property.data.title} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 py-[71px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 pb-[71px]">
           <div className="col-span-1">
+            <div className="my-[57px]">
+              <h1 className="text-main text-2xl md:text-4xl">₦ {Number(property.data.price).toLocaleString()}</h1>
+              <p className="flex gap-x-1">
+                <svg className="fill-[#959292] w-5" version="1.1" id="Filled_Icons" x="0px" y="0px" viewBox="0 0 24 24" enableBackground="new 0 0 24 24">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <g id="Location-Pin-Filled">
+                      <path d="M12,1c-4.97,0-9,4.03-9,9c0,6.75,9,13,9,13s9-6.25,9-13C21,5.03,16.97,1,12,1z M12,13c-1.66,0-3-1.34-3-3s1.34-3,3-3 s3,1.34,3,3S13.66,13,12,13z"></path>
+                    </g>
+                  </g>
+                </svg>
+                <span className="">{property.location}</span>
+              </p>
+            </div>
             <div className="space-y-4">
               <h2 className="text-2xl md:text-4xl text-main font-medium">Property Description</h2>
               <p className="text-base/[26px]">{property.data.description}</p>

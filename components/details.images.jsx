@@ -1,15 +1,7 @@
 "use client";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-
-const construct = {
-  title: "Adunni Terraces",
-  location: "poke, epe",
-  size: "3 Bedrooms",
-  description:
-    "The land is really green here! Oasis Garden is a charming Estate with spectacular, panoramic views and a hideout from noise and chaos associated with most part of Lagos. This estate offers 500 sqm (50ft by 100ft) generous spaces to move about (without losing that quaint, cozy atmosphere). Wake up each morning to awe-inspiring sunrises in the North side of the Lekki Lagoon and drift off to sleep each night with the tranquil sounds of nature. Situated in a friendly community with exciting neighborhoods such as Atlantic Hall School, Gov. Ambode'S Estate, Epe Resort, St. Augustine University and Otedola Housing Estate..",
-};
+import { useState } from "react";
 
 export default function Gallery({ images, title, location }) {
   const [active, setActive] = useState(images[0].url);
@@ -57,7 +49,8 @@ export default function Gallery({ images, title, location }) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {images.length > 3 && (
+          {/* {images.length > 3 && ( */}
+          {images.length && (
             <>
               <CarouselPrevious />
               <CarouselNext />
@@ -65,21 +58,20 @@ export default function Gallery({ images, title, location }) {
           )}
         </Carousel>
       </div>
-      <div className="md:hidden">
+      <div className="md:hidden px-10">
         {/* carousel for mobile pinter */}
         <Carousel
           opts={{
             align: "start",
-            loop: true,
           }}
-          className="w-full h-[50%] my-auto relative"
+          className="w-full my-auto relative"
         >
-          <CarouselContent className=" w-full py-3 grid grid-cols-5 gap-x-2">
+          <CarouselContent className=" w-full py-3 px-0">
             {images.map((img, index) => (
               <CarouselItem
                 onClick={() => setActive((e) => img.url)}
                 key={index}
-                className={`relative cursor-pointer border-dashed aspect-video col-span-1 ${active == img.url && "border-primary border-4"}`}
+                className={`relative cursor-pointer border-dashed aspect-video w-full ${active == img.url && "border-primary border-4"}`}
               >
                 <Image
                   fill
@@ -90,12 +82,8 @@ export default function Gallery({ images, title, location }) {
               </CarouselItem>
             ))}
           </CarouselContent>
-          {images.length > 3 && (
-            <>
-              <CarouselPrevious />
-              <CarouselNext />
-            </>
-          )}
+          <CarouselPrevious />
+          <CarouselNext />
         </Carousel>
       </div>
     </div>
