@@ -3,6 +3,7 @@
 import bcrypt from "bcryptjs";
 import { db } from "./config/firebase";
 import COLLECTION from "./api/variables";
+import { signIn } from "./auth";
 
 export const loginUser = async function (data) {
   try {
@@ -10,7 +11,8 @@ export const loginUser = async function (data) {
     const admin = await adminRef.get();
     if (!admin.exists || !bcrypt.compareSync(data.password, admin.data().password)) return { success: false, message: "invalid Credentials" };
     const { password, ...adminData } = admin.data();
-    return { success: true, data: adminData };
+    await signIn("credentials", adminData);
+    return { success: true };
   } catch (e) {
     console.log(e);
     return { success: false, message: e.message };
