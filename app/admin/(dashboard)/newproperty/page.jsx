@@ -24,7 +24,10 @@ const NewProperty = () => {
 
   const onSubmitHandler = async function (data) {
     setIsSubmitting(true);
-    if (!images.length) return toast.error("Images must be provided", { position: "top-right" });
+    if (!images.length) {
+      setIsSubmitting(false);
+      return toast.error("Images must be provided", { position: "top-right" });
+    }
     const imageResponse = [];
     try {
       for (let i = 0; i < images.length; i++) {

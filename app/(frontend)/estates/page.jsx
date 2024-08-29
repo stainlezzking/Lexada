@@ -1,9 +1,10 @@
+import { getListings } from "@/app/utils";
 import Footer from "@/components/footer";
 import Listing from "@/components/listing";
 import Section from "@/components/section";
-import image1 from "@/public/firstimage.png";
 
-const Estates = () => {
+const Estates = async () => {
+  const properties = await getListings();
   return (
     <div className="space-y-28">
       <Section className="space-y-16">
@@ -13,26 +14,31 @@ const Estates = () => {
           </h1>
           <span>Explore Our Exclusive Collection of Luxury Properties</span>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
+        {properties.success ? (
+          <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
+            {properties.data.slice(0, 4).map((property, i) => (
+              <div className="col-span-1" key={i}>
+                <Listing
+                  src={property.images[0].url}
+                  amount={property.price}
+                  title={property.title}
+                  location={property.location}
+                  status={property.status}
+                  id={property.id}
+                />
+              </div>
+            ))}
+            {!properties.data.length && (
+              <div className="h-[400px] flex items-center justify-center">
+                <p>You have no Listing</p>
+              </div>
+            )}
           </div>
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
+        ) : (
+          <div className="h-[400px] flex items-center justify-center">
+            <p>An Error ococured...</p>
           </div>
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
-          </div>
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
-          </div>
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
-          </div>
-          <div className="col-span-1">
-            <Listing src={image1} amount={1199000} title="Adunni Terraces" location="poka,epe" status="Sale" />
-          </div>
-        </div>
+        )}
       </Section>
       <Footer />
     </div>

@@ -15,7 +15,6 @@ const getProperty = async function (id) {
 
 const Page = async ({ params }) => {
   let property = await getProperty(params.id);
-  console.log(property);
   if (!property.success) {
     throw new Error(property.message);
     // handle with errorboundary

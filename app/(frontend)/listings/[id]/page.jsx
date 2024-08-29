@@ -30,6 +30,7 @@ const Page = async ({ params }) => {
     <>
       <main className="page-padding">
         <div className="space-y-2 py-5">
+          <span className="bg-background text-primary py-3 px-6 rounded-2xl block w-fit">{property.data.status}</span>
           <h1 className="text-2xl md:text-4xl font-bold text-main"> {property.data.title}</h1>
         </div>
 

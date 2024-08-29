@@ -30,34 +30,39 @@ const EditProperty = ({ property }) => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, dirtyFields },
   } = useForm({
     defaultValues: property,
   });
 
   const onSubmitHandler = async function (data) {
     setIsSubmitting(true);
-    if (!images.length) return toast.error("Images must be provided", { position: "top-right" });
-    const imageResponse = [];
-    try {
-      for (let i = 0; i < images.length; i++) {
-        const { secure_url: url, bytes, created_at } = await uploadImageCloudinary(images[i].file).then((d) => d.json());
-        imageResponse.push({ url, bytes, created_at });
-      }
-      const newProperty = { ...data, images: imageResponse };
-      const response = await fetch("/api/listings", {
-        headers: { "Content-Type": "application/json" },
-        method: "POST",
-        body: JSON.stringify(newProperty),
-      }).then((d) => d.json());
-      if (!response.success) return toast.error(response.message);
-      await fetch("/api/listings", { next: { revalidate: 0 } });
+    if (!images.length && !oldImages.length) {
       setIsSubmitting(false);
-      router.push("/listings/" + response.id);
-    } catch (e) {
-      setIsSubmitting(false);
-      toast.error(e.data.message);
+      return toast.error("Images must be provided", { position: "top-right" });
     }
+    console.log("submitted", dirtyFields);
+    setIsSubmitting(false);
+    // const imageResponse = [];
+    // try {
+    //   for (let i = 0; i < images.length; i++) {
+    //     const { secure_url: url, bytes, created_at } = await uploadImageCloudinary(images[i].file).then((d) => d.json());
+    //     imageResponse.push({ url, bytes, created_at });
+    //   }
+    //   const newProperty = { ...data, images: imageResponse };
+    //   const response = await fetch("/api/listings", {
+    //     headers: { "Content-Type": "application/json" },
+    //     method: "POST",
+    //     body: JSON.stringify(newProperty),
+    //   }).then((d) => d.json());
+    //   if (!response.success) return toast.error(response.message);
+    //   await fetch("/api/listings", { next: { revalidate: 0 } });
+    //   setIsSubmitting(false);
+    //   router.push("/listings/" + response.id);
+    // } catch (e) {
+    //   setIsSubmitting(false);
+    //   toast.error(e.data.message);
+    // }
   };
   return (
     <>
@@ -163,20 +168,6 @@ const EditProperty = ({ property }) => {
                     <label htmlFor="r2">Sold out</label>
                     <input type="radio" {...register("status", { required: true })} value="sold out" id="r2" />
                   </div>
-                  {/* <RadioGroup className={"w-full " + (errors.status && "border border-red-200")}>
-                    <div className="flex w-full items-center space-y-3">
-                      <label className="block" htmlFor="r1">
-                        On Sale
-                      </label>
-                      <RadioGroupItem {...register("status", { required: true })} value="sales" id="r1" className="ms-auto" />
-                    </div>
-                    <div className="flex w-full items-center space-y-3">
-                      <label className="block" htmlFor="r2">
-                        Sold out
-                      </label>
-                      <RadioGroupItem {...register("status", { required: true })} value="soldout" id="r2" className="ms-auto" />
-                    </div>
-                  </RadioGroup> */}
                 </div>
               </div>
               <div className="space-y-5">

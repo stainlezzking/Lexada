@@ -44,6 +44,9 @@ const Footer = () => {
                   <Link className="block hover:underline" href="/inspection">
                     Book an inspection
                   </Link>
+                  <Link className="block hover:underline" href="/admin">
+                    Admin
+                  </Link>
                 </div>
               </ul>
               <ul className="space-y-4 md:space-y-6">
