@@ -1,11 +1,9 @@
 import { getListings } from "@/app/utils";
 import AdminListing from "@/components/admin-listing";
-import image1 from "@/public/firstimage.png";
 import Link from "next/link";
-import { get } from "react-hook-form";
-
 const Dashboard = async () => {
-  const properties = await getListings();
+  await fetch(`${process.env.URL}/api/revalidator/listings`, { next: { revalidate: 0 } });
+  const properties = await getListings(true);
   // handle error
   if (!properties) {
     return <div>505 Failed to load properties</div>;
@@ -15,7 +13,7 @@ const Dashboard = async () => {
     <>
       <nav className="border-b-2 border-gray md:page-padding">
         <div className="p-7 border-x-2 border-x-gray flex justify-between">
-          <h1 className="text-3xl text-main">Dashboard</h1>
+          <h1 className="text-xl md:text-3xl text-main">Dashboard</h1>
           <div className="flex items-center gap-x-2">
             <div className="p-2 bg-background rounded-full">
               <svg className="w-8" viewBox="0 0 40 31" fill="none" xmlns="http://www.w3.org/2000/svg">

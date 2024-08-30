@@ -23,6 +23,12 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const AdminListing = ({ src, amount, title, createdAt, id }) => {
+  const deleteProperty = async (id) => {
+    const res = await fetch(`/api/listings/${id}`, {
+      next: { revalidate: true },
+      method: "DELETE",
+    });
+  };
   return (
     <div className="w-full border border-gray/50 rounded-[18px] p-6 space-y-7 mx-auto">
       <div className="h-[300px] relative">
@@ -35,7 +41,7 @@ const AdminListing = ({ src, amount, title, createdAt, id }) => {
           </Link>
           <AlertDialog>
             <DropdownMenu>
-              <DropdownMenuTrigger>
+              <DropdownMenuTrigger asChild>
                 <div className="cursor-pointer p-2">
                   <svg width="4" height="16" viewBox="0 0 4 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -55,7 +61,9 @@ const AdminListing = ({ src, amount, title, createdAt, id }) => {
                 </DropdownMenuItem>
                 <DropdownMenuItem>
                   <AlertDialogTrigger asChild>
-                    <button className="text-[#565656]">Delete</button>
+                    <span onClick={deleteProperty} className="text-[#565656] ">
+                      Delete
+                    </span>
                   </AlertDialogTrigger>
                 </DropdownMenuItem>
               </DropdownMenuContent>
@@ -68,12 +76,10 @@ const AdminListing = ({ src, amount, title, createdAt, id }) => {
                 </AlertDialogHeader>
                 <AlertDialogFooter>
                   <AlertDialogCancel>Cancel</AlertDialogCancel>
-                  <AlertDialogAction className="bg-red-600">
-                    <form action="">
-                      <button type="submit" className="text-white">
-                        Continue
-                      </button>
-                    </form>
+                  <AlertDialogAction className="bg-red-600" asChild>
+                    <span type="submit" onClick={() => deleteProperty(id)} className="text-white">
+                      Continue
+                    </span>
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>
