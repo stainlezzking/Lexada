@@ -2,13 +2,13 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import parse, { attributesToProps } from "html-react-parser";
 import Dropzone from "@/components/upload";
-import { uploadImageCloudinary } from "@/lib/cloudinary.client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { UploadProperty } from "@/app/client.utils";
 
 const NewProperty = () => {
   const [images, setImages] = useState([]);
@@ -28,26 +28,12 @@ const NewProperty = () => {
       setIsSubmitting(false);
       return toast.error("Images must be provided", { position: "top-right" });
     }
-    const imageResponse = [];
-    try {
-      for (let i = 0; i < images.length; i++) {
-        const { secure_url: url, bytes, created_at } = await uploadImageCloudinary(images[i].file).then((d) => d.json());
-        imageResponse.push({ url, bytes, created_at });
-      }
-      const newProperty = { ...data, images: imageResponse };
-      const response = await fetch("/api/listings", {
-        headers: { "Content-Type": "application/json" },
-        method: "POST",
-        body: JSON.stringify(newProperty),
-      }).then((d) => d.json());
-      if (!response.success) return toast.error(response.message);
-      await fetch("/api/listings", { next: { revalidate: 0 } });
-      setIsSubmitting(false);
-      router.push("/listings/" + response.id);
-    } catch (e) {
-      setIsSubmitting(false);
-      toast.error(e.data.message);
+    const response = await UploadProperty(images, data);
+    setIsSubmitting(false);
+    if (!response.success) {
+      return toast.error(response.message);
     }
+    router.push("/listings/" + response.id);
   };
   return (
     <>
