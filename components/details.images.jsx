@@ -42,15 +42,14 @@ export default function Gallery({ images, title, location }) {
                 <Image
                   fill
                   src={img.url}
-                  sizes="(max-width: 768px) 100vw, (min-width: 768px) calc(100vw - 150px ), (min-width: 1024px) calc(100vw - 250px )"
+                  sizes="(max-width: 768px) 50vw, (min-width: 768px) calc(100vw - 150px ), (min-width: 1024px) calc(100vw - 250px )"
                   className="h-full w-full object-cover object-center block"
                   alt={`images of ${title} properties by Lexada Real Estate, Located in ${location}`}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
-          {/* {images.length > 3 && ( */}
-          {images.length && (
+          {images.length > 2 && (
             <>
               <CarouselPrevious />
               <CarouselNext />
@@ -58,32 +57,38 @@ export default function Gallery({ images, title, location }) {
           )}
         </Carousel>
       </div>
-      <div className="md:hidden px-10">
-        {/* carousel for mobile pinter */}
+      <div className="md:hidden px-10 ">
         <Carousel
           opts={{
             align: "start",
           }}
-          className="w-full my-auto relative"
+          className="w-full max-w-sm mx-auto pt-5"
         >
-          <CarouselContent className=" w-full py-3 px-0">
+          <CarouselContent className="w-full flex justify-between gap-x-2">
+            {false && ["basis-1/2", "basis-1/3", "basis-1/4"]}
             {images.map((img, index) => (
               <CarouselItem
-                onClick={() => setActive((e) => img.url)}
                 key={index}
-                className={`relative cursor-pointer border-dashed aspect-video w-full ${active == img.url && "border-primary border-4"}`}
+                onClick={() => setActive((e) => img.url)}
+                className={`relative cursor-pointer border-dashed aspect-video w-full ${active == img.url && "border-primary border-4"}  ${
+                  images.length < 3 ? `basis-1/${images.length}` : "basis-1/3"
+                }`}
               >
                 <Image
                   fill
                   src={img.url}
-                  className="h-full w-full object-cover object-center block"
+                  className="h-full w-full max-w-full object-cover object-center block"
                   alt={`images of ${title} properties by Lexada Real Estate, Located in ${location}`}
                 />
               </CarouselItem>
             ))}
           </CarouselContent>
-          <CarouselPrevious />
-          <CarouselNext />
+          {images.length > 3 && (
+            <>
+              <CarouselPrevious />
+              <CarouselNext />
+            </>
+          )}
         </Carousel>
       </div>
     </div>

@@ -33,7 +33,7 @@ const Page = async ({ params }) => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 pb-[71px]">
           <div className="col-span-1">
-            <div className="my-[57px] space-y-[14px]">
+            <div className="my[30px] md:my-[57px] space-y-[14px]">
               <h1 className="text-main text-2xl md:text-4xl">₦ {Number(property.data.price).toLocaleString()}</h1>
               <p className="flex gap-x-1">
                 <svg
