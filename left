@@ -5,7 +5,6 @@
 - Home page title text [use Shadcn]
 - Handle Error from server API
 - generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
-- addd skeleton/preloader to server components taking long time to
   render because it makes the link look like its broken without feedback
 - use zod to validate all sent data, including delete route, check publicIds is an array of strings - this will help in real estate project
   Do something about that details page carousel for mobile, looks like shite
@@ -14,7 +13,7 @@
 
 # 1 Work on the Details Page carousel for mobile ✅
 
-# WOrk on skeleton for server components
+# WOrk on skeleton for server components ✅
 
 # Handle Error From Server
 

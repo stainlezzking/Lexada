@@ -9,7 +9,6 @@ import Link from "next/link";
 import Service from "@/components/services";
 import Listing from "@/components/listing";
 import Blogspreview from "@/components/blogs.preview";
-import Footer from "@/components/footer";
 import { getListings } from "../utils";
 
 export default async function Home() {
@@ -225,7 +224,6 @@ export default async function Home() {
           </Section>
         </div>
       </main>
-      <Footer />
     </>
   );
 }

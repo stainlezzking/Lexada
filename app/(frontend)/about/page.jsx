@@ -1,4 +1,3 @@
-import Footer from "@/components/footer";
 import about from "@/public/about.png";
 import Image from "next/image";
 const About = () => {
@@ -47,7 +46,6 @@ const About = () => {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 };

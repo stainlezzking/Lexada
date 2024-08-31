@@ -21,13 +21,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { revalidateListingsAction } from "@/app/actions";
 
-const AdminListing = ({ src, amount, title, createdAt, id }) => {
+const AdminListing = ({ src, amount, title, createdAt, id, handleSetDelete }) => {
   const deleteProperty = async (id) => {
+    handleSetDelete(true);
     const res = await fetch(`/api/listings/${id}`, {
       next: { revalidate: true },
       method: "DELETE",
     });
+    await revalidateListingsAction();
+    handleSetDelete(false);
   };
   return (
     <div className="w-full border border-gray/50 rounded-[18px] p-6 space-y-7 mx-auto">

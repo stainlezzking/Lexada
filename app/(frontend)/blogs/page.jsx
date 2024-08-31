@@ -1,5 +1,4 @@
 import Blogspreview from "@/components/blogs.preview";
-import Footer from "@/components/footer";
 import Section from "@/components/section";
 import image1 from "@/public/firstimage.png";
 
@@ -34,7 +33,6 @@ const Blogs = () => {
           </div>
         </div>
       </Section>
-      <Footer />
     </div>
   );
 };

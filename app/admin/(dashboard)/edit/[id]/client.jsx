@@ -70,11 +70,11 @@ const EditProperty = ({ property }) => {
               />
             </svg>
 
-            <h1 className="text-3xl text-main">Edit Property</h1>
+            <h1 className="text-xl md:text-3xl text-main">Edit Property</h1>
           </Link>
           <div className="flex items-center gap-x-2">
             <div className="p-2 bg-background rounded-full">
-              <svg className="w-8" viewBox="0 0 40 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-6 md:w-8" viewBox="0 0 40 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M19.9993 20.0026C24.6017 20.0026 28.3327 16.2716 28.3327 11.6693C28.3327 7.0669 24.6017 3.33594 19.9993 3.33594C15.397 3.33594 11.666 7.0669 11.666 11.6693C11.666 16.2716 15.397 20.0026 19.9993 20.0026Z"
                   fill="#C82021"

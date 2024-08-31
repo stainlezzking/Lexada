@@ -1,13 +1,7 @@
-import { getListings } from "@/app/utils";
-import AdminListing from "@/components/admin-listing";
-import Link from "next/link";
+import { Suspense } from "react";
+import ServerStream from "./server";
+import Loading from "./skeleton-loader";
 const Dashboard = async () => {
-  const properties = await getListings();
-  // handle error
-  if (!properties) {
-    return <div>505 Failed to load properties</div>;
-  }
-  const { data } = properties;
   return (
     <>
       <nav className="border-b-2 border-gray md:page-padding">
@@ -40,24 +34,9 @@ const Dashboard = async () => {
               <h3 className="text-xl text-main">Welcome Paul!</h3>
               <p>An overview of your properties</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
-              <div className="col-span-full">
-                <Link href="/admin/newproperty" className="ms-auto bg-main text-white py-3 px-6 rounded-[5px] block w-fit hover:bg-main/80">
-                  Add New
-                </Link>
-              </div>
-              {data.map((property, i) => (
-                <div className="col-span-1" key={i}>
-                  <AdminListing
-                    createdAt={property.createdAt}
-                    src={property.images[0].url}
-                    id={property.id}
-                    amount={Number(property.price)}
-                    title={property.title}
-                  />
-                </div>
-              ))}
-            </div>
+            <Suspense fallback={<Loading />}>
+              <ServerStream />
+            </Suspense>
           </div>
         </main>
       </div>

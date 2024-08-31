@@ -2,7 +2,6 @@ import Image from "next/image";
 import house from "@/public/firstimage.png";
 import LineBreak from "@/components/line.break";
 import SchdeuleTour from "@/components/schedule-tour";
-import Footer from "@/components/footer";
 import ParseString from "@/components/parse.html.string";
 import Gallery from "@/components/details.images";
 import { getProperty } from "@/app/utils";
@@ -90,7 +89,6 @@ const Page = async ({ params }) => {
           </div>
         </div>
       </main>
-      <Footer />
     </>
   );
 };
