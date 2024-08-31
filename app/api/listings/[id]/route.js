@@ -15,16 +15,16 @@ export async function GET(req, res) {
 
 // update property
 export async function PUT(req, res) {
+  const newUpdate = await req.json();
   try {
-    const data = await db.collection(COLLECTION.list).doc(res.params.id).update(req.body);
-    return NextResponse.json({ success: true, data });
+    const data = await db.collection(COLLECTION.list).doc(res.params.id).update(newUpdate);
+    return NextResponse.json({ success: true, id: res.params.id });
   } catch (e) {
     return NextResponse.json({ success: false, message: "An error occured " + e.message });
   }
 }
 
 export async function DELETE(req, res) {
-  console.log(res.params);
   try {
     await db.collection(COLLECTION.list).doc(res.params.id).delete();
     revalidateTag("listings");

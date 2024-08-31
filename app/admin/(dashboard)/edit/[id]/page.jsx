@@ -1,3 +1,4 @@
+import { getProperty } from "@/app/utils";
 import EditProperty from "./client";
 
 export const generateMetadata = async ({ params }) => {
@@ -8,18 +9,18 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
-const getProperty = async function (id) {
-  const response = await fetch(`${process.env.URL}/api/listings/${id}`).then((data) => data.json());
-  return response;
-};
-
 const Page = async ({ params }) => {
-  let property = await getProperty(params.id);
+  const property = await fetch(process.env.URL + "/api/listings/" + params.id, {
+    next: {
+      revalidate: 0,
+    },
+  }).then((d) => d.json());
+  // let property = await getProperty(params.id);
   if (!property.success) {
     throw new Error(property.message);
     // handle with errorboundary
   }
-  return <EditProperty property={property.data} />;
+  return <EditProperty property={{ ...property.data, id: params.id }} />;
 };
 
 export default Page;

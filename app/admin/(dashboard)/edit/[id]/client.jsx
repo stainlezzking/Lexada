@@ -2,15 +2,15 @@
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import parse, { attributesToProps } from "html-react-parser";
 import Dropzone from "@/components/upload";
-import { uploadImageCloudinary } from "@/lib/cloudinary.client";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { v4 as uuidv4 } from "uuid";
-import { deleteOldImages } from "./functions";
+import { deleteOldImagesFunction } from "./functions";
+import { UploadEditedProperty } from "@/app/client.utils";
+import { revalidateListingsAction } from "@/app/actions";
 
 export const metadata = {
   title: "Edit Property | Lexada Real Estate",
@@ -24,7 +24,7 @@ const EditProperty = ({ property }) => {
   const router = useRouter();
 
   useEffect(() => {
-    setOldImages(property.images.map((img) => ({ preview: img.url, _id: uuidv4() })));
+    setOldImages(property.images);
   }, []);
   const {
     register,
@@ -41,28 +41,18 @@ const EditProperty = ({ property }) => {
       setIsSubmitting(false);
       return toast.error("Images must be provided", { position: "top-right" });
     }
-    console.log("submitted", dirtyFields);
+    const newUpdate = Object.keys(dirtyFields).reduce((acc, prop) => {
+      acc[prop] = data[prop];
+      return acc;
+    }, {});
+
+    const uploadResponse = await UploadEditedProperty(property.id, images, oldImages, deletedImages, newUpdate);
+    const revalidated = await revalidateListingsAction();
     setIsSubmitting(false);
-    // const imageResponse = [];
-    // try {
-    //   for (let i = 0; i < images.length; i++) {
-    //     const { secure_url: url, bytes, created_at } = await uploadImageCloudinary(images[i].file).then((d) => d.json());
-    //     imageResponse.push({ url, bytes, created_at });
-    //   }
-    //   const newProperty = { ...data, images: imageResponse };
-    //   const response = await fetch("/api/listings", {
-    //     headers: { "Content-Type": "application/json" },
-    //     method: "POST",
-    //     body: JSON.stringify(newProperty),
-    //   }).then((d) => d.json());
-    //   if (!response.success) return toast.error(response.message);
-    //   await fetch("/api/listings", { next: { revalidate: 0 } });
-    //   setIsSubmitting(false);
-    //   router.push("/listings/" + response.id);
-    // } catch (e) {
-    //   setIsSubmitting(false);
-    //   toast.error(e.data.message);
-    // }
+    if (!uploadResponse.success) {
+      return toast.error(uploadResponse.message);
+    }
+    return router.push("/listings/" + uploadResponse.id);
   };
   return (
     <>
@@ -179,11 +169,11 @@ const EditProperty = ({ property }) => {
                   <h1 className="text-lg text-main font-medium">Old Images</h1>
                   <div className="grid grid-cols-2 gap-4">
                     {oldImages.map((img) => (
-                      <div key={img._id} className="relative">
-                        <img src={img.preview} alt="" className="w-full aspect-[4/3] object-center object-cover" />
+                      <div key={img.public_id} className="relative">
+                        <img src={img.url} alt="" className="w-full aspect-[4/3] object-center object-cover" />
                         <button
                           type="button"
-                          onClick={() => deleteOldImages(setDeletedImages, setOldImages, img._id)}
+                          onClick={() => deleteOldImagesFunction(setDeletedImages, setOldImages, img.public_id)}
                           className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1"
                         >
                           <svg className="w-4" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -309,7 +299,7 @@ const EditProperty = ({ property }) => {
                     </div>
                   ) : (
                     <img
-                      src={images[0]?.preview || oldImages[0].preview}
+                      src={images[0]?.preview || oldImages[0].url}
                       className="rounded-[16px] w-full aspect-[4/3] object-cover object-center border border-gray"
                       alt="The picture of your new property"
                     />

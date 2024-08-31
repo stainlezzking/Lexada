@@ -6,3 +6,10 @@ export const getListings = async function () {
   });
   return await data.json();
 };
+
+export const getProperty = async function (id) {
+  const response = await fetch(`${process.env.URL}/api/listings/${id}`, {
+    next: { tags: ["listings"] },
+  }).then((data) => data.json());
+  return response;
+};

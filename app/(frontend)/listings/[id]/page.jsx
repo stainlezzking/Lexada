@@ -5,6 +5,7 @@ import SchdeuleTour from "@/components/schedule-tour";
 import Footer from "@/components/footer";
 import ParseString from "@/components/parse.html.string";
 import Gallery from "@/components/details.images";
+import { getProperty } from "@/app/utils";
 
 export const generateMetadata = async ({ params }) => {
   let property = await getProperty(params.id);
@@ -14,14 +15,8 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
-const getProperty = async function (id) {
-  const response = await fetch(`${process.env.URL}/api/listings/${id}`).then((data) => data.json());
-  return response;
-};
-
 const Page = async ({ params }) => {
   let property = await getProperty(params.id);
-  console.log(property);
   if (!property.success) {
     throw new Error(property.message);
     // handle with errorboundary
@@ -50,8 +45,8 @@ const Page = async ({ params }) => {
                   viewBox="0 0 24 24"
                   enableBackground="new 0 0 24 24"
                 >
-                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                  <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
                     <g id="Location-Pin-Filled">
                       <path d="M12,1c-4.97,0-9,4.03-9,9c0,6.75,9,13,9,13s9-6.25,9-13C21,5.03,16.97,1,12,1z M12,13c-1.66,0-3-1.34-3-3s1.34-3,3-3 s3,1.34,3,3S13.66,13,12,13z"></path>

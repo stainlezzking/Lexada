@@ -2,8 +2,7 @@ import { getListings } from "@/app/utils";
 import AdminListing from "@/components/admin-listing";
 import Link from "next/link";
 const Dashboard = async () => {
-  await fetch(`${process.env.URL}/api/revalidator/listings`, { next: { revalidate: 0 } });
-  const properties = await getListings(true);
+  const properties = await getListings();
   // handle error
   if (!properties) {
     return <div>505 Failed to load properties</div>;
@@ -50,7 +49,7 @@ const Dashboard = async () => {
               {data.map((property, i) => (
                 <div className="col-span-1" key={i}>
                   <AdminListing
-                    createdAt=" July 1, 2016"
+                    createdAt={property.createdAt}
                     src={property.images[0].url}
                     id={property.id}
                     amount={Number(property.price)}

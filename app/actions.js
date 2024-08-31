@@ -4,6 +4,7 @@ import bcrypt from "bcryptjs";
 import { db } from "./config/firebase";
 import COLLECTION from "./api/variables";
 import { signIn } from "./auth";
+import { revalidateTag } from "next/cache";
 
 export const loginUser = async function (data) {
   try {
@@ -29,3 +30,10 @@ export const loginUser = async function (data) {
 //     return { success: false, message: e.message };
 //   }
 // };
+
+export const revalidateListingsAction = async function () {
+  // combined the listings because even when a listing is updated, you still have to
+  // to update listings because of the preview information
+  await revalidateTag("listings");
+  return { success: true, message: "Revalidated Listings tag" };
+};

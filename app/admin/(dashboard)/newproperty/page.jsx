@@ -4,16 +4,22 @@ import parse, { attributesToProps } from "html-react-parser";
 import Dropzone from "@/components/upload";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { UploadProperty } from "@/app/client.utils";
+import { revalidateListingsAction } from "@/app/actions";
 
 const NewProperty = () => {
   const [images, setImages] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
+  useEffect(function () {
+    revalidateListingsAction().then((response) => {
+      console.log(response);
+    });
+  }, []);
   const router = useRouter();
   const {
     register,
@@ -29,11 +35,12 @@ const NewProperty = () => {
       return toast.error("Images must be provided", { position: "top-right" });
     }
     const response = await UploadProperty(images, data);
+    await revalidateListingsAction();
     setIsSubmitting(false);
     if (!response.success) {
       return toast.error(response.message);
     }
-    router.push("/listings/" + response.id);
+    return router.push("/listings/" + response.id);
   };
   return (
     <>

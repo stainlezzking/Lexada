@@ -6,4 +6,13 @@
 - Home page title text [use Shadcn]
 - Handle Error from server API
 - generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
-- addd skeleton/preloader to server components taking long time to render because it makes the link look like its broken without feedback
+- addd skeleton/preloader to server components taking long time to
+  render because it makes the link look like its broken without feedback
+- delete images from cloudinary when deleting properties
+- use zod to validate all sent data, including delete route, check publicIds is an array of strings - this will help in real estate project
+  Do something about that details page carousel for mobile, looks like shite
+
+#I THINK I AM CONVERTING THE OLD IMAGES INTO PREVIEW and that is what it is updated in the db as during edits... that is the reason for the error
+AND AFTER EDIT ITS IS BEING REDIRECTED TO listings/undefined
+
+# I Can confirm to you that i need to handle errors throw in the Component

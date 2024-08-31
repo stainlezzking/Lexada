@@ -1,0 +1,11 @@
+
+DELETE https://api.cloudinary.com/v1_1/lexada/image/destroy?public_id=kriev56lqdzkuvfr7pik
+
+###
+
+DELETE http://localhost:3000/api/images/
+Content-Type: application/json
+
+{
+    "publicIds": ["lexada-real-estate-lagos/kriev56lqdzkuvfr7pik", "wiopgenp gneugowgp"]
+}
