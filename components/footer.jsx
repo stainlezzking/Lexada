@@ -66,7 +66,11 @@ const Footer = () => {
               <ul className="space-y-4 md:space-y-6">
                 <li className="font-bold text-main">Follow us on social media</li>
                 <div className="space-y-4">
-                  <Link className="flex gap-x-3 items-center hover:underline" href="/">
+                  <Link
+                    className="flex gap-x-3 items-center hover:underline"
+                    target="_blank"
+                    href="https://www.facebook.com/profile.php?id=100084287172007&mibextid=LQQJ4d"
+                  >
                     <svg width="11" height="19" viewBox="0 0 11 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M10.4766 3.79688H7.47656C6.92426 3.79688 6.47656 4.2446 6.47656 4.79688V7.79688H10.4766C10.5903 7.79435 10.6982 7.84728 10.7658 7.93878C10.8334 8.03027 10.8524 8.14888 10.8166 8.25688L10.0766 10.4569C10.0084 10.6588 9.81966 10.7953 9.60656 10.7969H6.47656V18.2969C6.47656 18.573 6.25266 18.7969 5.97656 18.7969H3.47656C3.20042 18.7969 2.97656 18.573 2.97656 18.2969V10.7969H1.47656C1.20042 10.7969 0.976562 10.573 0.976562 10.2969V8.29688C0.976562 8.02077 1.20042 7.79688 1.47656 7.79688H2.97656V4.79688C2.97656 2.58773 4.76746 0.796875 6.97656 0.796875H10.4766C10.7527 0.796875 10.9766 1.02073 10.9766 1.29688V3.29688C10.9766 3.57301 10.7527 3.79688 10.4766 3.79688Z"
@@ -75,7 +79,7 @@ const Footer = () => {
                     </svg>
                     <p>Facebook</p>
                   </Link>
-                  <Link className="flex gap-x-3 items-center hover:underline" href="/">
+                  <Link className="flex gap-x-3 items-center hover:underline" href="https://instagram.com/lexada_prime">
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         fillRule="evenodd"

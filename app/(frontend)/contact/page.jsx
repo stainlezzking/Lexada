@@ -13,11 +13,11 @@ const Contact = () => {
             <div className="space-y-6">
               <div>
                 <h1 className="text-base sm:text-lg">Phone Numbers</h1> <br />
-                <span className="text-base sm:text-lg text-main">07012837499, 09017283461</span>
+                <span className="text-base sm:text-lg text-main">08053434742, 09020071701</span>
               </div>
               <div>
                 <h1 className="text-base sm:text-lg">Emails</h1> <br />
-                <span className="text-base sm:text-lg text-main">lexada@gmail.com</span>
+                <span className="text-base sm:text-lg text-main">info.lexadaproperties@gmail.com</span>
               </div>
             </div>
           </div>
