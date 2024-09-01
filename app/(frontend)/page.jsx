@@ -12,6 +12,7 @@ import Listing from "@/components/listing";
 import Blogspreview from "@/components/blogs.preview";
 import { getListings } from "../utils";
 import { FlipWords } from "@/components/ui/flip-words";
+import { allBlogs } from "./blogs/blogs.preview.constant";
 
 export default async function Home() {
   const properties = await getListings();
@@ -32,10 +33,7 @@ export default async function Home() {
                 Choose Lexada Prime Real Estate, Choose <br />
                 <FlipWords words={words} className="text-primary" />
               </h1>
-              <Link
-                href="/estates"
-                className=" bg-white text-main py-[13px] px-[40px] rounded-[5px] mx-auto block w-fit hover:bg-main hover:text-primary"
-              >
+              <Link href="/estates" className=" bg-white text-main py-[13px] px-[40px] rounded-[5px] mx-auto block w-fit hover:bg-main hover:text-primary">
                 Explore
               </Link>
             </div>
@@ -53,8 +51,8 @@ export default async function Home() {
                     <span className="text-primary">LUXURY </span>LIVING JUST FOR YOU
                   </h1>
                   <p>
-                    As a top recognized real estate company, Our talented and experienced team of certified professionals provides a wide range of
-                    services from residential and commercial properties acquisition to assets marketing and maintenance.
+                    As a top recognized real estate company, Our talented and experienced team of certified professionals provides a wide range of services from
+                    residential and commercial properties acquisition to assets marketing and maintenance.
                   </p>
                 </div>
                 <Link className="text-white button w-fit" href="/about">
@@ -71,9 +69,9 @@ export default async function Home() {
                     BOOK AN INSPECTION WITH <span className="text-primary">OUR AGENTS</span>
                   </h1>
                   <p>
-                    At Lexada, we believe in the importance of seeing a property firsthand before making a decision. Our experienced agents are here
-                    to provide you with a comprehensive tour of your selected properties, answer all your questions, and help you assess every detail.
-                    Booking an inspection is simple and ensures you get a clear understanding of what each property offers.
+                    At Lexada, we believe in the importance of seeing a property firsthand before making a decision. Our experienced agents are here to provide
+                    you with a comprehensive tour of your selected properties, answer all your questions, and help you assess every detail. Booking an
+                    inspection is simple and ensures you get a clear understanding of what each property offers.
                   </p>
                 </div>
                 <Link className="text-white button w-fit" href="/">
@@ -82,12 +80,7 @@ export default async function Home() {
               </div>
             </div>
             <div className="col-span-1 relative max-md:order-1 max-md:mb-[100px]">
-              <Image
-                placeholder="blur"
-                src={BookAgent}
-                className="w-full h-full rounded-2xl"
-                alt="Pictures of Lexada real estate properties in Nigeria"
-              />
+              <Image placeholder="blur" src={BookAgent} className="w-full h-full rounded-2xl" alt="Pictures of Lexada real estate properties in Nigeria" />
               <div className="bg-[#2B2B2B] rounded-[5px] w-[200px] h-[189px] lg:w-[260px] lg:h-[226px] absolute max-md:-translate-x-1/2 left-1/2 -bottom-[94px] md:bottom-0  md:left-0 lg:-left-[100px] flex items-center justify-center">
                 <div className="space-y-[5px]">
                   <Image src={agent} className="w-20 rounded-full mx-auto block" alt="Lexada Lead Agent picture, Leo Paul" />
@@ -140,7 +133,7 @@ export default async function Home() {
               >
                 <svg className="w-16" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="66" height="66" className="fill-primary" />
-                  <g clip-path="url(#clip0_101_152)">
+                  <g clipPath="url(#clip0_101_152)">
                     <path
                       d="M22.5 35.25H43.5M33 35.25V51M24.75 31.5V24.75H22.992C21.993 24.75 21.0225 25.0824 20.2333 25.6948C19.4441 26.3072 18.8811 27.1648 18.633 28.1325L15.75 39.375V39.75H26.25V42C26.25 44.25 26.25 45.75 27.375 48C27.375 48 28.5 50.25 30 50.25M41.25 31.5V24.75H43.008C44.007 24.75 44.9775 25.0824 45.7667 25.6948C46.5559 26.3072 47.1189 27.1648 47.367 28.1325L50.25 39.375V39.75H39.75V42C39.75 44.25 39.75 45.75 38.625 48C38.625 48 37.5 50.25 36 50.25M24.525 21.75C24.525 21.75 22.125 20.25 22.125 18.375C22.125 17.6796 22.4012 17.0127 22.893 16.521C23.3847 16.0292 24.0516 15.753 24.747 15.753C25.4424 15.753 26.1093 16.0292 26.601 16.521C27.0928 17.0127 27.369 17.6796 27.369 18.375C27.369 20.25 24.975 21.75 24.975 21.75H24.525ZM41.475 21.75C41.475 21.75 43.875 20.25 43.875 18.375C43.875 17.6788 43.5984 17.0111 43.1062 16.5188C42.6139 16.0266 41.9462 15.75 41.25 15.75C39.801 15.75 38.631 16.926 38.631 18.375C38.631 20.25 41.025 21.75 41.025 21.75H41.475Z"
                       stroke="#FFF7F6"
@@ -172,7 +165,12 @@ export default async function Home() {
               <h1 className="title">
                 OUR <span className="text-primary">ESTATES</span>
               </h1>
-              <span>Explore Our Exclusive Collection of Luxury Properties</span>
+              <span>
+                Explore Our Exclusive Collection of Luxury Properties{" "}
+                <Link href="/listings" className="hover:underline text-indigo-700  text-sm">
+                  View more
+                </Link>
+              </span>
             </div>
             {properties.success ? (
               <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
@@ -208,25 +206,17 @@ export default async function Home() {
               <span>Stay Informed with the Latest Real Estate Insights and Trends</span>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-[27px]">
-              <div className="col-span-1 max-w-[450px] w-full mx-auto">
-                <Blogspreview url={image1} id={1} title="The Nigerian Real Estate Market: Trends and Predictions for 2024" />
-              </div>
-              <div className="col-span-1 max-w-[450px] w-full mx-auto">
-                <Blogspreview url={image1} id={1} title="The Nigerian Real Estate Market: Trends and Predictions for 2024" />
-              </div>
-              <div className="col-span-1 max-w-[450px] w-full mx-auto">
-                <Blogspreview url={image1} id={1} title="The Nigerian Real Estate Market: Trends and Predictions for 2024" />
-              </div>
+              {allBlogs.map((blog) => (
+                <div className="col-span-1 max-w-[450px] w-full mx-auto" key={blog.id}>
+                  <Blogspreview url={blog.image} id={blog.id} title={blog.title} />
+                </div>
+              ))}
             </div>
           </Section>
 
           <Section className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-16">
             <div className="col-span-1 self-center ">
-              <Image
-                src={clientSay}
-                className="w-full max-lg:max-w-[500px] max-lg:mx-auto"
-                alt="What our clients say, The Lexada real estate company"
-              />
+              <Image src={clientSay} className="w-full max-lg:max-w-[500px] max-lg:mx-auto" alt="What our clients say, The Lexada real estate company" />
             </div>
             <div className="space-y-8 col-span-1">
               <h1 className="title">
@@ -235,24 +225,22 @@ export default async function Home() {
               <div className="space-y-6">
                 <div className="space-y-5 rounded-2xl border border-gray p-[10px]">
                   <p>
-                    Choosing Lexada for our real estate needs was the best decision we made. Their exclusive listings and personalized approach set
-                    them apart. We found a luxurious property that fits our lifestyle perfectly. Thank you, Lexada, for making the process enjoyable
-                    and stress-free
+                    Choosing Lexada for our real estate needs was the best decision we made. Their exclusive listings and personalized approach set them apart.
+                    We found a luxurious property that fits our lifestyle perfectly. Thank you, Lexada, for making the process enjoyable and stress-free
                   </p>
                   <span className="text-main font-semibold block">-Bola & Seyi A., Lekki</span>
                 </div>
                 <div className="space-y-5 rounded-2xl border border-gray p-[10px]">
                   <p>
-                    Lexada's dedication to customer satisfaction is evident in every interaction. Their agents are knowledgeable, responsive, and
-                    genuinely care about finding the right property for you. We couldn't be happier with our new home and the exceptional service we
-                    received.
+                    Lexada's dedication to customer satisfaction is evident in every interaction. Their agents are knowledgeable, responsive, and genuinely care
+                    about finding the right property for you. We couldn't be happier with our new home and the exceptional service we received.
                   </p>
                   <span className="text-main font-semibold block">-Olufemi & Nneka E., Ajah</span>
                 </div>
                 <div className="space-y-5 rounded-2xl border border-gray p-[10px]">
                   <p>
-                    Relocating to Nigeria was a significant move for our family, and Lexada made it seamless. From finding the perfect home to
-                    assisting with the move, their comprehensive relocation services were outstanding. We felt supported throughout the entire process
+                    Relocating to Nigeria was a significant move for our family, and Lexada made it seamless. From finding the perfect home to assisting with
+                    the move, their comprehensive relocation services were outstanding. We felt supported throughout the entire process
                   </p>
                   <span className="text-main font-semibold block">-Fatima & Ibrahim M., Okota</span>
                 </div>
@@ -262,11 +250,7 @@ export default async function Home() {
 
           <Section className="grid grid-cols-1 md:grid-cols-2 md:p-0">
             <div className="col-span-1 md:h-[620px] md:order-2">
-              <Image
-                src={town}
-                alt="An image of a beautiful estate town on the Lexada website"
-                className="w-full md:h-full object-cover object-center"
-              />
+              <Image src={town} alt="An image of a beautiful estate town on the Lexada website" className="w-full md:h-full object-cover object-center" />
             </div>
             <div className="bg-[#FFEBE9] col-span-1 md:h-[620px] max-md:py-20 flex items-center md:order-1">
               <div className=" space-y-8 page-padding">

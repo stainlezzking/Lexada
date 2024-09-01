@@ -1,5 +1,3 @@
-import Image from "next/image";
-import house from "@/public/firstimage.png";
 import LineBreak from "@/components/line.break";
 import SchdeuleTour from "@/components/schedule-tour";
 import ParseString from "@/components/parse.html.string";
@@ -35,15 +33,7 @@ const Page = async ({ params }) => {
             <div className="my[30px] md:my-[57px] space-y-[14px]">
               <h1 className="text-main text-2xl md:text-4xl">₦ {Number(property.data.price).toLocaleString()}</h1>
               <p className="flex gap-x-1">
-                <svg
-                  className="fill-[#959292] w-5"
-                  version="1.1"
-                  id="Filled_Icons"
-                  x="0px"
-                  y="0px"
-                  viewBox="0 0 24 24"
-                  enableBackground="new 0 0 24 24"
-                >
+                <svg className="fill-[#959292] w-5" version="1.1" id="Filled_Icons" x="0px" y="0px" viewBox="0 0 24 24" enableBackground="new 0 0 24 24">
                   <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">

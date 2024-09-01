@@ -15,7 +15,7 @@ const Navbar = () => {
   const toggle = () => setMenu((e) => !e);
   return (
     <>
-      <nav className="flex justify-between items-center py-5 text-main page-padding">
+      <nav className="flex justify-between items-center py-5 text-main page-padding border-b-2 border-b-gray/50">
         <Link href="/">
           <Logo />
         </Link>
@@ -36,7 +36,7 @@ const Navbar = () => {
             </Link>
           </li>
           <li>
-            <Link className={`${pathname == "/blogs" && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/blogs">
+            <Link className={`${pathname.startsWith("/blogs") && "border-b-4"} hover:text-primary py-2 px-3  border-b-primary`} href="/blogs">
               Blog
             </Link>
           </li>
@@ -46,9 +46,13 @@ const Navbar = () => {
             </Link>
           </li>
         </ul>
-        <Link href="/more" className="button text-white max-lg:hidden">
-          Book an Inspection
-        </Link>
+        {pathname !== "/inspection" ? (
+          <Link href="/inspection" className="button text-white max-lg:hidden">
+            Book an Inspection
+          </Link>
+        ) : (
+          <span className="max-lg:hidden"> </span>
+        )}
         <button role="menuitem" aria-label="Toggle menu" onClick={toggle} className="lg:hidden">
           <svg className="w-8" viewBox="0 0 16 11" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 10.7666V9.76656H16V10.7666H0ZM0 5.99656V4.99656H16V5.99656H0ZM0 1.22656V0.226562H16V1.22656H0Z" fill="black" />

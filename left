@@ -1,13 +1,8 @@
 -Add a pop up animation at the bottom menu when open (maybe with a house... something smooth)
 
-- use Errorboundary to handle !response.success in details page and other pages like Edit page
 - react-easy-crop to crop images on upload
-- Home page title text [use Shadcn]
-- Handle Error from server API
 - generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
-  render because it makes the link look like its broken without feedback
 - use zod to validate all sent data, including delete route, check publicIds is an array of strings - this will help in real estate project
-  Do something about that details page carousel for mobile, looks like shite
 
 # I Can confirm to you that i need to handle errors throw in the Component
 
@@ -19,12 +14,20 @@
 
 # Home Page title with shadcn ✅
 
-# Authourize dashboard routes
+# Authourize dashboard routes ✅
 
 # Zod validation# generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
 
-# Blogs
+# Blogs ✅
 
 # Add src attribute to all images including the once from the server
+
+# Submitting Contact Form, Email Subscribe, Schedule Listing
+
+# Footer Links and social media
+
+# Fetch all listing to populate inspection page select property
+
+# why is Favicon not showing up
 
 # Animation
