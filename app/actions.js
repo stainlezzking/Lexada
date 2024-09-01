@@ -45,10 +45,6 @@ export const revalidateListingsAction = async function () {
 export const getTitlesofListings = async function () {
   const properties = await getListings();
   if (!properties.success) return { success: false, message: "A problem occured! fetching properties" };
-  console.log(
-    properties,
-    properties.data.map((property) => property.title)
-  );
   return { success: true, data: properties.data.map((property) => property.title) };
 };
 export const contactUs = async function (data) {
@@ -59,4 +55,14 @@ export const contactUs = async function (data) {
 export const scheduledListing = async function (data) {
   const response = await sendEmail("Scheduled Listing", sendInspectionRequest(data));
   return response;
+};
+
+export const registerMailList = async function (data) {
+  try {
+    await db.collection(COLLECTION.mailList).doc(data.email).set(data);
+    return { success: true, message: "You have successfully Joined our mailing list" };
+  } catch (e) {
+    console.log(e);
+    return { success: false, message: e.message };
+  }
 };

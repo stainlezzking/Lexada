@@ -1,8 +1,33 @@
-import Image from "next/image";
+"use client";
+import { registerMailList } from "@/app/actions";
 import Logo from "@/components/logo.jsx";
 import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 
 const Footer = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  console.log(errors);
+  const submitForm = async function (data) {
+    const response = await registerMailList(data);
+    if (!response.success) {
+      // set error to react hook form root
+      setError("error", response.message);
+    }
+    reset();
+    setTimeout(() => {
+      setError("");
+      setSuccess("");
+    }, 10000);
+    return setSuccess(response.message);
+  };
   return (
     <footer className="space-y-[32px]">
       <div className="mt-20 pt-10 border-t border-gray page-padding ">
@@ -14,20 +39,38 @@ const Footer = () => {
             <div className="col-span-1 space-y-4 lg:space-y-6 text-main">
               <p>Join our newsletter to stay up to date on features and releases.</p>
               <div>
-                <div className="flex gap-x-2 md:gap-x-4">
+                <form onSubmit={handleSubmit(submitForm)} className="flex gap-x-2 md:gap-x-4">
                   <input
                     type="text"
+                    {...register("email", {
+                      required: true,
+                      pattern: { value: /^[a-z]+[a-z,0-9]+@[a-z]+\.[a-z]{2,}$/, message: "Please provide a valid email address" },
+                    })}
                     placeholder="Enter your email address"
-                    className="w-full max-w-[650px] px-3 rounded-[5px] border border-text block"
+                    className={`w-full max-w-[650px] px-3 rounded-[5px] border ${errors.email ? "border-primary" : "border-text"} block`}
                   />
                   <button
-                    type="button"
-                    role="button"
-                    className="border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]"
+                    disabled={isSubmitting}
+                    type="submit"
+                    className="flex items-center group gap-x-1 border py-2 px-4 md:py-3 md:px-6 border-text hover:bg-main hover:text-white rounded-[5px]"
                   >
+                    {isSubmitting && (
+                      <span className="block animate-spin">
+                        <svg className="fill-main group-hover:fill-white w-4" viewBox="0 0 32 32">
+                          <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
+                          <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
+                          <g id="SVGRepo_iconCarrier">
+                            <path d="M16 1.25c-0.414 0-0.75 0.336-0.75 0.75s0.336 0.75 0.75 0.75v0c7.318 0.001 13.25 5.933 13.25 13.251 0 3.659-1.483 6.972-3.881 9.37v0c-0.14 0.136-0.227 0.327-0.227 0.537 0 0.414 0.336 0.75 0.75 0.75 0.212 0 0.403-0.088 0.539-0.228l0-0c2.668-2.669 4.318-6.356 4.318-10.428 0-8.146-6.604-14.751-14.75-14.751h-0z"></path>{" "}
+                          </g>
+                        </svg>
+                      </span>
+                    )}
                     Subscribe
                   </button>
-                </div>
+                </form>
+                {errors.email && <p className="text-primary text-sm">Please provide a valid email</p>}
+                {error && <p className="text-primary text-sm">{error}</p>}
+                {success && <p className="text-green-400 text-sm">{success}</p>}
               </div>
               <p className="text-sm">By subscribing you agree to with our Privacy Policy and provide consent to receive updates from our company.</p>
             </div>

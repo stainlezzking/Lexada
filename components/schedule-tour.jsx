@@ -81,7 +81,10 @@ const SchdeuleTour = ({ title }) => {
             </label>
             <input
               type="email"
-              {...register("email", { required: "your email is required" })}
+              {...register("email", {
+                required: "your email is required",
+                pattern: { value: /^[a-z]+[a-z,0-9]+@[a-z]+\.[a-z]{2,}$/, message: "Please provide a valid email address" },
+              })}
               className="border border-gray/50 text-text rounded-2xl block w-full px-4 py-3 "
               placeholder="johnsnow@gmail.com"
             />
