@@ -1,9 +1,13 @@
 import { auth } from "@/app/auth";
+import { NextResponse } from "next/server";
 
-export default auth((request) => {
-  console.log("admin link");
+export default auth(async (request) => {
+  const session = await auth();
+  if (!session) return NextResponse.redirect(new URL("/admin/auth", request.url));
+  return NextResponse.next();
 });
 
 export const config = {
-  matcher: "/admin/:path*",
+  // match /admin but not /admin/auth
+  matcher: "/admin((?!/auth).*)",
 };

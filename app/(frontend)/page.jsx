@@ -1,6 +1,7 @@
 import Image from "next/image";
 import banner from "@/public/banner.png";
 import image1 from "@/public/firstimage.png";
+import BookAgent from "@/public/home-book-agent.png";
 import clientSay from "@/public/clients-say.png";
 import town from "@/public/town.png";
 import agent from "@/public/agent.png";
@@ -81,7 +82,12 @@ export default async function Home() {
               </div>
             </div>
             <div className="col-span-1 relative max-md:order-1 max-md:mb-[100px]">
-              <Image src={image1} className="w-full h-full rounded-2xl" alt="Pictures of Lexada real estate properties in Nigeria" />
+              <Image
+                placeholder="blur"
+                src={BookAgent}
+                className="w-full h-full rounded-2xl"
+                alt="Pictures of Lexada real estate properties in Nigeria"
+              />
               <div className="bg-[#2B2B2B] rounded-[5px] w-[200px] h-[189px] lg:w-[260px] lg:h-[226px] absolute max-md:-translate-x-1/2 left-1/2 -bottom-[94px] md:bottom-0  md:left-0 lg:-left-[100px] flex items-center justify-center">
                 <div className="space-y-[5px]">
                   <Image src={agent} className="w-20 rounded-full mx-auto block" alt="Lexada Lead Agent picture, Leo Paul" />

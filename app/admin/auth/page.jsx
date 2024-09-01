@@ -2,12 +2,22 @@
 import { loginUser, registerUser } from "@/app/actions";
 import Logo from "@/components/logo";
 import { Input } from "@/components/ui/input";
-import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
 
 const Page = () => {
+  const router = useRouter();
+  const session = useSession();
+  useEffect(() => {
+    if (session) {
+      router.push("/admin");
+    }
+  }, [session]);
   const [pending, setPending] = useState(false);
+
   const {
     register,
     trigger,
@@ -28,7 +38,7 @@ const Page = () => {
         },
       });
     }
-    console.log("success", res);
+    console.log(res);
   };
   return (
     <main className="px-10 mx-auto pb-16 min-h-screen flex items-center justify-center bg-blue-200 ">
