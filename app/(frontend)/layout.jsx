@@ -3,7 +3,7 @@ import "../globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 
-const poppins = Poppins({ subsets: ["latin"], weight: "400" });
+const poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "700", "900"] });
 
 export const metadata = {
   title: "Create Next App",

@@ -15,10 +15,12 @@
 
 # WOrk on skeleton for server components ✅
 
-# Handle Error From Server
+# Handle Error From Server - [skipped error page is error page]
 
-# Home Page title with shadcn
+# Home Page title with shadcn ✅
 
 # Authourize dashboard routes
 
 # Zod validation# generate sitemap https://nextjs.org/docs/app/api-reference/functions/generate-sitemaps
+
+# Blogs

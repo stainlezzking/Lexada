@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import ServerStream from "./server";
 import Loading from "./skeleton-loader";
+import Footer from "@/components/footer";
 const Dashboard = async () => {
   return (
     <>
@@ -40,6 +41,7 @@ const Dashboard = async () => {
           </div>
         </main>
       </div>
+      <Footer />
     </>
   );
 };
