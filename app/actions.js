@@ -5,6 +5,10 @@ import { db } from "./config/firebase";
 import COLLECTION from "./api/variables";
 import { signIn } from "./auth";
 import { revalidateTag } from "next/cache";
+import { sendEmail } from "./config/nodemailer";
+import { contactUSEmailTemplate } from "@/components/emails/contact-us";
+import { getListings } from "./utils";
+import { sendInspectionRequest } from "@/components/emails/inspection-request";
 
 export const loginUser = async function (data) {
   try {
@@ -36,4 +40,23 @@ export const revalidateListingsAction = async function () {
   // to update listings because of the preview information
   await revalidateTag("listings");
   return { success: true, message: "Revalidated Listings tag" };
+};
+
+export const getTitlesofListings = async function () {
+  const properties = await getListings();
+  if (!properties.success) return { success: false, message: "A problem occured! fetching properties" };
+  console.log(
+    properties,
+    properties.data.map((property) => property.title)
+  );
+  return { success: true, data: properties.data.map((property) => property.title) };
+};
+export const contactUs = async function (data) {
+  const response = await sendEmail(data.subject, contactUSEmailTemplate(data));
+  return response;
+};
+
+export const scheduledListing = async function (data) {
+  const response = await sendEmail("Scheduled Listing", sendInspectionRequest(data));
+  return response;
 };

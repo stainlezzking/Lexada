@@ -2,14 +2,25 @@
 import { useEffect, useRef, useState } from "react";
 import useSticky from "./stickyhook";
 import { useForm } from "react-hook-form";
+import { scheduledListing } from "@/app/actions";
 
 const SchdeuleTour = ({ title }) => {
   const stickyRef = useRef(null);
   const [offset, setOffset] = useState(0);
   const {
+    handleSubmit,
     register,
     formState: { errors },
   } = useForm({});
+
+  const submitForm = async function (data) {
+    const response = await scheduledListing(data);
+    if (!response.success) {
+      return toast.error(response.message, { position: "top-right" });
+    }
+    reset();
+    return toast.success(response.message, { position: "top-right" });
+  };
 
   useEffect(() => {
     if (stickyRef.current) {
@@ -21,10 +32,13 @@ const SchdeuleTour = ({ title }) => {
   return (
     <div
       ref={stickyRef}
-      className={`${isSticky && "sticky top-0"} border-gray lg:max-w-[600px] lg:ms-auto px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}
+      className={`${
+        isSticky && "sticky top-0"
+      } border-gray lg:max-w-[600px] lg:ms-auto px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}
     >
+      <Toaster richColors />
       <div className="mx-auto w-fit py-3 px-6 border border-main text-2xl text-main rounded-[5px]">Schedule a Tour</div>
-      <form className=" pb-[132px]">
+      <form onSubmit={handleSubmit(submitForm)} className=" pb-[132px]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 mb-16">
           <div className="col-span-1 space-y-[6px]">
             <label className="text-[#777777]" htmlFor="date">
@@ -79,7 +93,7 @@ const SchdeuleTour = ({ title }) => {
             </label>
             <input
               type="Number"
-              {...register("number", { required: "Put a valid phone number" })}
+              {...register("phone", { required: "Put a valid phone number" })}
               className="border border-gray/50 text-text rounded-2xl block w-full px-4 py-3 "
               placeholder="+234-8100000000"
             />

@@ -1,14 +1,39 @@
 "use client";
+import { getTitlesofListings, scheduledListing } from "@/app/actions";
 import Footer from "@/components/footer";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast, Toaster } from "sonner";
 const Inspection = () => {
+  const [properties, setProperties] = useState([]);
   const {
     register,
+    handleSubmit,
+    reset,
     formState: { errors },
   } = useForm({});
 
+  const submitForm = async function (data) {
+    const response = await scheduledListing(data);
+    if (!response.success) {
+      return toast.error(response.message, { position: "top-right" });
+    }
+    reset();
+    return toast.success(response.message, { position: "top-right" });
+  };
+
+  useEffect(function () {
+    const getAllListings = async function () {
+      const response = await getTitlesofListings();
+      // if (!response.success) return toast.error("This form is temporarily down, please use the contact us");
+      setProperties(response.data);
+    };
+    getAllListings();
+  });
+
   return (
     <>
+      <Toaster richColors />
       <main className="page-padding space-y-[88px] mt-[40px] lg:mt-[88px] mb-32">
         <div className="max-w-[700px]">
           <div className="space-y-[48px]">
@@ -23,7 +48,7 @@ const Inspection = () => {
             <div className="space-y-6">
               <div className={`px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
                 <div className="mx-auto w-fit py-3 px-6 border border-gray text-2xl text-main rounded-[5px]">Get in Touch</div>
-                <form className=" pb-[132px]">
+                <form onSubmit={handleSubmit(submitForm)} className=" pb-[132px]">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 mb-16">
                     <div className="col-span-1 space-y-[6px]">
                       <label className="text-[#777777]" htmlFor="date">
@@ -78,7 +103,7 @@ const Inspection = () => {
                       </label>
                       <input
                         type="Number"
-                        {...register("number", { required: "Put a valid phone number" })}
+                        {...register("phone", { required: "Put a valid phone number" })}
                         className="border border-gray/50 text-text rounded-2xl block w-full px-4 py-3 "
                         placeholder="+234-8100000000"
                       />
@@ -101,7 +126,7 @@ const Inspection = () => {
                         type="Number"
                         {...register("people", { required: "Put a valid phone number" })}
                         className="border border-gray/50 text-text rounded-2xl block w-full px-4 py-3"
-                        placeholder="+234-8100000000"
+                        placeholder="4"
                       />
                       {errors.people && <p className="text-red-500 font-thin text-sm">{errors.people.message}</p>}
                     </div>
@@ -113,10 +138,14 @@ const Inspection = () => {
                         name="property"
                         className="disabled:bg-gray disabled:cursor-not-allowed
            border border-gray/50 text-text rounded-2xl block w-full px-4 py-3"
-                        disabled
+                        disabled={!properties.length}
                         readOnly
                       >
-                        <option value=""> Select</option>
+                        {properties.map((title) => (
+                          <option key={title} value={title}>
+                            {title}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
