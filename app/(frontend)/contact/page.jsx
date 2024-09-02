@@ -44,7 +44,7 @@ const Contact = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-1">
+          <div className="col-span-1" data-aos="fade-down-left">
             <div className={`lg:max-w-[700px] lg:ms-auto space-y-12 p-16 shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}>
               <div className="mx-auto w-fit py-3 px-6 border border-gray text-2xl text-main rounded-[5px]">Get in Touch</div>
               <form onSubmit={handleSubmit(submitForm)} className="grid grid-cols-2 gap-x-4 gap-y-8">

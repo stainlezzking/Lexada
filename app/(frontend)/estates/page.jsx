@@ -16,7 +16,7 @@ const Estates = async () => {
       {properties.success ? (
         <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
           {properties.data.map((property, i) => (
-            <div className="col-span-1" key={i}>
+            <div className="col-span-1" key={i} data-aos="fade-up" data-aos-delay={i * 200}>
               <Listing
                 src={property.images[0].url}
                 amount={property.price}

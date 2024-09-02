@@ -13,8 +13,8 @@ const Blogs = () => {
           <span>Stay Informed with the Latest Real Estate Insights and Trends</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-[27px]">
-          {allBlogs.map((blog) => (
-            <div className="col-span-1 max-w-[450px] w-full mx-auto" key={blog.id}>
+          {allBlogs.map((blog, i) => (
+            <div className="col-span-1 max-w-[450px] w-full mx-auto" key={blog.id} data-aos="fade-up" data-aos-delay={i * 200}>
               <Blogspreview url={blog.image} id={blog.id} title={blog.title} />
             </div>
           ))}

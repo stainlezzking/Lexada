@@ -7,10 +7,10 @@ const About = () => {
       <Section className="page-padding">
         <div className="space-y-12">
           <div className="space-y-2">
-            <h1 className="title">
+            <h1 className="title" data-aos="fade-up">
               About <span className="text-primary">Us</span>
             </h1>
-            <p className="text-lg md:text-xl lg:text-2xl/[36px]">
+            <p data-aos="fade-right" data-aos-delay="400" className="text-lg md:text-xl lg:text-2xl/[36px]">
               Discover who we are, what we stand for, and how we are transforming the Nigerian real estate landscape.
             </p>
           </div>
@@ -30,14 +30,14 @@ const About = () => {
             </p>
           </div>
           <div className="max-w-[1000px] mx-auto space-y-[30px] md:px-8">
-            <div className="border rounded-2xl space-y-3 border-gray px-[14px] py-[30px]">
+            <div data-aos="fade-left" className="border rounded-2xl space-y-3 border-gray px-[14px] py-[30px]">
               <h4 className="text-2xl font-semibold text-main">Our Vision</h4>
               <p className="text-base md:text-lg/[30px]">
                 From concept to completion, we offer comprehensive property development services. Our team works on residential and commercial
                 projects, ensuring quality and adherence to timelines.
               </p>
             </div>
-            <div className="border rounded-2xl space-y-3 border-gray px-[14px] py-[30px]">
+            <div data-aos="fade-right" data-aos-delay="200" className="border rounded-2xl space-y-3 border-gray px-[14px] py-[30px]">
               <h4 className="text-2xl font-semibold text-main">Our Mission</h4>
               <p className="text-base md:text-lg/[30px]">
                 From concept to completion, we offer comprehensive property development services. Our team works on residential and commercial
