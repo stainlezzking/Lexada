@@ -78,16 +78,16 @@ const Footer = () => {
               <ul className="space-y-4 md:space-y-6">
                 <li className="font-bold text-main">Company</li>
                 <div className="space-y-4">
-                  <Link className="block hover:underline" href="/about">
+                  <Link className="block hover:underline text-[14px]" href="/about">
                     About us
                   </Link>
-                  <Link className="block hover:underline" href="/blogs">
+                  <Link className="block hover:underline text-[14px]" href="/blogs">
                     Blog
                   </Link>
-                  <Link className="block hover:underline" href="/inspection">
+                  <Link className="block hover:underline text-[14px]" href="/inspection">
                     Book an inspection
                   </Link>
-                  <a className="block hover:underline" href="/admin">
+                  <a className="block hover:underline text-[14px]" href="/admin">
                     Admin
                   </a>
                 </div>
@@ -95,13 +95,13 @@ const Footer = () => {
               <ul className="space-y-4 md:space-y-6">
                 <li className="font-bold text-main">Support</li>
                 <div className="space-y-4">
-                  <Link className="block hover:underline" href="/contact">
+                  <Link className="block hover:underline text-[14px]" href="/contact">
                     Contact us
                   </Link>
-                  <Link className="block hover:underline" href="/">
+                  <Link className="block hover:underline text-[14px]" href="/">
                     Terms and Conditions
                   </Link>
-                  <Link className="block hover:underline" href="/">
+                  <Link className="block hover:underline text-[14px]" href="/">
                     Feedback
                   </Link>
                 </div>
@@ -110,7 +110,7 @@ const Footer = () => {
                 <li className="font-bold text-main">Follow us on social media</li>
                 <div className="space-y-4">
                   <Link
-                    className="flex gap-x-3 items-center hover:underline"
+                    className="flex gap-x-3 items-center hover:underline text-[14px]"
                     target="_blank"
                     href="https://www.facebook.com/profile.php?id=100084287172007&mibextid=LQQJ4d"
                   >
@@ -122,7 +122,7 @@ const Footer = () => {
                     </svg>
                     <p>Facebook</p>
                   </Link>
-                  <Link className="flex gap-x-3 items-center hover:underline" href="https://instagram.com/lexada_prime">
+                  <Link className="flex gap-x-3 items-center hover:underline text-[14px]" href="https://instagram.com/lexada_prime">
                     <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         fillRule="evenodd"
@@ -133,7 +133,7 @@ const Footer = () => {
                     </svg>
                     <p>Instagram</p>
                   </Link>
-                  <Link className="flex gap-x-3 items-center hover:underline" href="/">
+                  <Link className="flex gap-x-3 items-center hover:underline text-[14px]" href="/">
                     <svg width="19" height="16" viewBox="0 0 19 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path
                         d="M18.9502 2.51428C18.4858 3.1338 17.9244 3.67421 17.2877 4.11464C17.2877 4.27647 17.2877 4.4383 17.2877 4.60913C17.2928 7.54798 16.1189 10.366 14.0292 12.4314C11.9394 14.4968 9.10862 15.6368 6.17147 15.5958C4.47341 15.6015 2.79709 15.2138 1.27384 14.463C1.1917 14.4271 1.13873 14.3459 1.13904 14.2562V14.1573C1.13904 14.0282 1.24365 13.9236 1.37269 13.9236C3.04184 13.8685 4.65144 13.2898 5.97376 12.2693C4.46295 12.2388 3.10361 11.3438 2.47802 9.96758C2.44643 9.89248 2.45626 9.80618 2.50399 9.74008C2.55171 9.67398 2.63042 9.63758 2.71167 9.64398C3.17084 9.69008 3.6346 9.64738 4.07762 9.51808C2.40981 9.17188 1.15663 7.78728 0.977279 6.09258C0.970909 6.01128 1.00734 5.93258 1.07342 5.88478C1.13949 5.83708 1.22566 5.82718 1.3008 5.85888C1.74836 6.05638 2.23151 6.16038 2.72066 6.16448C1.25926 5.20534 0.628029 3.38093 1.18397 1.7231C1.24136 1.56201 1.37923 1.443 1.54692 1.40982C1.7146 1.37663 1.88738 1.43416 2.00174 1.56127C3.97381 3.66013 6.68346 4.91084 9.55932 5.04967C9.48572 4.75573 9.44952 4.45364 9.45152 4.1506C9.47842 2.5616 10.4616 1.14609 11.9408 0.566747C13.4199 -0.0125833 15.1023 0.358907 16.2004 1.50732C16.9488 1.36473 17.6724 1.11333 18.3481 0.761087C18.3976 0.730187 18.4604 0.730187 18.5099 0.761087C18.5408 0.810607 18.5408 0.873397 18.5099 0.922917C18.1826 1.6724 17.6297 2.301 16.9283 2.72107C17.5425 2.64984 18.1459 2.50495 18.7256 2.28952C18.7744 2.2563 18.8385 2.2563 18.8873 2.28952C18.9282 2.30822 18.9588 2.34399 18.9709 2.3873C18.983 2.43061 18.9754 2.47706 18.9502 2.51428Z"

@@ -8,13 +8,13 @@ const Listing = ({ src, amount, title, location, status, id }) => {
         <Image src={src} fill className="rounded-2xl w-full h-full object-cover " alt={"image of " + title + "located in " + location} />
       </div>
       <Link href={"/listings/" + id} className="space-y-2 block group">
-        <div className="flex justify-between">
+        <div className="flex justify-between items-center">
           <h3 className="text-2xl text-main group-hover:underline ">₦ {Number(amount).toLocaleString()}</h3>
-          <span className="bg-background text-primary py-3 px-6 rounded-2xl">{status}</span>
+          <span className="bg-background text-primary py-3 px-6 rounded-2xl uppercase">{status}</span>
         </div>
-        <div className="text-[#565656]">
+        <div className="text-[#565656] space-y-2">
           <p className="capitalize">{title}</p>
-          <p className="uppercase">{location}</p>
+          <p className="">{location}</p>
         </div>
       </Link>
     </div>

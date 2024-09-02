@@ -9,7 +9,7 @@ const Estates = async () => {
     <Section className="space-y-16">
       <div className="text-start">
         <h1 className="title">
-          OUR <span className="text-primary">ESTATES</span>
+          Our <span className="text-primary">Estates</span>
         </h1>
         <span>Explore Our Exclusive Collection of Luxury Properties</span>
       </div>

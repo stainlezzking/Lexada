@@ -1,13 +1,14 @@
+import Section from "@/components/section";
 import about from "@/public/about.png";
 import Image from "next/image";
 const About = () => {
   return (
     <>
-      <div className="page-padding">
+      <Section className="page-padding">
         <div className="space-y-12">
           <div className="space-y-2">
             <h1 className="title">
-              About <span className="text-primary">US</span>
+              About <span className="text-primary">Us</span>
             </h1>
             <p className="text-lg md:text-xl lg:text-2xl/[36px]">
               Discover who we are, what we stand for, and how we are transforming the Nigerian real estate landscape.
@@ -45,7 +46,7 @@ const About = () => {
             </div>
           </div>
         </div>
-      </div>
+      </Section>
     </>
   );
 };

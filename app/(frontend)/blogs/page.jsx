@@ -8,7 +8,7 @@ const Blogs = () => {
       <Section className="space-y-16">
         <div className="text-start">
           <h1 className="title">
-            OUR <span className="text-primary">Blogs</span>
+            Our <span className="text-primary">Blog</span>
           </h1>
           <span>Stay Informed with the Latest Real Estate Insights and Trends</span>
         </div>
