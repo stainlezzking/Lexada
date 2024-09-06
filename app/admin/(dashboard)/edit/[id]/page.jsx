@@ -15,7 +15,6 @@ const Page = async ({ params }) => {
       revalidate: 0,
     },
   }).then((d) => d.json());
-  await new Promise((resolve) => setTimeout(resolve, 10000));
   // let property = await getProperty(params.id);
   if (!property.success) {
     throw new Error(property.message);

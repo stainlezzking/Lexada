@@ -8,14 +8,14 @@ import agent from "@/public/agent.png";
 import Section from "@/components/section";
 import Link from "next/link";
 import Service from "@/components/services";
-import Listing from "@/components/listing";
 import Blogspreview from "@/components/blogs.preview";
-import { getListings } from "../utils";
 import { FlipWords } from "@/components/ui/flip-words";
-import { allBlogs } from "./blogs/blogs.preview.constant";
+import { allBlogs } from "../blogs/blogs.preview.constant";
+import GetListingsHome from "./listings";
+import { Suspense } from "react";
+import { ListingLoading } from "./listings-loading";
 
 export default async function Home() {
-  const properties = await getListings();
   const words = ["Peace of Mind", "Security", "Lifestyle", "Investment", "Legacy"];
   return (
     <>
@@ -187,31 +187,9 @@ export default async function Home() {
                 </Link>
               </span>
             </div>
-            {properties.success ? (
-              <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-[27px]">
-                {properties.data.slice(0, 4).map((property, i) => (
-                  <div className="col-span-1" data-aos="fade-up" data-aos-delay={i * 100} key={i}>
-                    <Listing
-                      src={property.images[0].url}
-                      amount={property.price}
-                      title={property.title}
-                      location={property.location}
-                      status={property.status}
-                      id={property.id}
-                    />
-                  </div>
-                ))}
-                {!properties.data.length && (
-                  <div className="h-[400px] flex items-center justify-center">
-                    <p>You have no Listing</p>
-                  </div>
-                )}
-              </div>
-            ) : (
-              <div className="h-[400px] flex items-center justify-center">
-                <p>An Error ococured...</p>
-              </div>
-            )}
+            <Suspense fallback={<ListingLoading />}>
+              <GetListingsHome />
+            </Suspense>
           </Section>
           <Section className="space-y-16 bg-background">
             <div className="text-center space-y-2">
