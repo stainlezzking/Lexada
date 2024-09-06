@@ -29,7 +29,7 @@ const About = () => {
               a lavish villa, or a sprawling estate, we have the expertise and resources to guide you every step of the way
             </p>
           </div>
-          <div className="max-w-[1000px] mx-auto space-y-[30px] md:px-8">
+          <div className="max-w-[1000px] mx-auto space-y-[30px] md:px-8 overflow-hidden">
             <div data-aos="fade-left" className="border rounded-2xl space-y-3 border-gray px-[14px] py-[30px]">
               <h4 className="text-2xl font-semibold text-main">Our Vision</h4>
               <p className="text-base md:text-lg/[30px]">

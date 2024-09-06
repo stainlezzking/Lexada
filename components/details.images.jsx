@@ -13,7 +13,7 @@ export default function Gallery({ images, title, location }) {
           fill
           sizes="(max-width: 768px) 100vw, (min-width: 768px) calc(100vw - 150px ), (min-width: 1024px) calc(100vw - 250px )"
           // placeholder="blur"
-          className="w-full h-full object-cover object-center "
+          className="w-full h-full object-cover object-center max-md:rounded-lg"
           alt={`images of ${title} properties by Lexada Real Estate, Located in ${location}`}
         />
       </div>
@@ -29,15 +29,9 @@ export default function Gallery({ images, title, location }) {
           <CarouselContent className=" h-full max-h-[400px] space-y-6 py-3">
             {images.map((img, index) => (
               <CarouselItem
-                onClick={() =>
-                  setActive((e) => {
-                    console.log(e, img.url);
-                    console.log(e == img.url);
-                    return img.url;
-                  })
-                }
+                onClick={() => setActive((e) => img.url)}
                 key={index}
-                className={`pt-1 h-1/3 aspect-video w-auto relative cursor-pointer border-dashed ${active == img.url && "border-primary border-4"}`}
+                className={`pt-1 h-1/3 aspect-video w-auto relative cursor-pointer`}
               >
                 <Image
                   fill
@@ -70,14 +64,14 @@ export default function Gallery({ images, title, location }) {
               <CarouselItem
                 key={index}
                 onClick={() => setActive((e) => img.url)}
-                className={`relative cursor-pointer border-dashed aspect-video w-full ${active == img.url && "border-primary border-4"}  ${
+                className={`relative cursor-pointer border-dashed aspect-video w-full pl-0 ${
                   images.length < 3 ? `basis-1/${images.length}` : "basis-1/3"
                 }`}
               >
                 <Image
                   fill
                   src={img.url}
-                  className="h-full w-full max-w-full object-cover object-center block"
+                  className="h-full w-full max-w-full object-cover object-center block max-md:rounded-lg "
                   alt={`images of ${title} properties by Lexada Real Estate, Located in ${location}`}
                 />
               </CarouselItem>

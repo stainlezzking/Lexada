@@ -9,11 +9,12 @@ import { useForm } from "react-hook-form";
 import { toast, Toaster } from "sonner";
 
 const Page = () => {
-  const router = useRouter();
   const session = useSession();
+  const router = useRouter();
   useEffect(() => {
-    if (session) {
-      router.push("/admin");
+    if (session.data) {
+      console.log("authticated", session);
+      router.push("/admin/");
     }
   }, [session]);
   const [pending, setPending] = useState(false);
@@ -21,14 +22,14 @@ const Page = () => {
   const {
     register,
     trigger,
-    getValues,
+    handleSubmit,
     formState: { errors, isValid },
   } = useForm({});
-  const clientAction = async function (formData) {
+  const authenticateUser = async function (data) {
     trigger();
     if (!isValid) return;
     setPending(true);
-    const res = await loginUser(getValues());
+    const res = await loginUser(data);
     setPending(false);
     if (!res.success) {
       return toast.error(res.message, {
@@ -38,7 +39,7 @@ const Page = () => {
         },
       });
     }
-    console.log(res);
+    router.push("/admin/");
   };
   return (
     <main className="px-10 mx-auto pb-16 min-h-screen flex items-center justify-center bg-blue-200 ">
@@ -48,7 +49,7 @@ const Page = () => {
           {/* <img src="../logo.png" alt="" className="w-[50px] block" /> */}
           <Logo />
         </h3>
-        <form action={clientAction} className="px-10">
+        <form onSubmit={handleSubmit(authenticateUser)} className="px-10">
           <div className="py-3">
             <h1 className="text-2xl mb-2"> Admin Login</h1>
             <div className="space-y-6">

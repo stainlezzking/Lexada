@@ -23,17 +23,25 @@ const Page = async ({ params }) => {
       <main className="page-padding">
         <div className="space-y-2 py-5">
           <span className="bg-background text-primary py-3 px-6 rounded-2xl block w-fit">{property.data.status}</span>
-          <h1 className="text-2xl md:text-4xl font-bold text-main"> {property.data.title}</h1>
+          <h1 className="text-3xl md:text-4xl font-medium md:font-bold text-main"> {property.data.title}</h1>
         </div>
 
         <Gallery images={property.data.images} location={property.data.location} title={property.data.title} />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 pb-[71px]">
-          <div className="col-span-1">
-            <div className="my[30px] md:my-[57px] space-y-[14px]">
+        <div className="grid grid-cols-1 lg:grid-cols-2 max-lg:gap-y-16 gap-x-11 pb-[71px] max-md:mt-7">
+          <div className="col-span-1 space-y-[20px]">
+            <div className="my[30px] md:my-[57px] space-y-1 md:space-y-[14px]">
               <h1 className="text-main text-2xl md:text-4xl">₦ {Number(property.data.price).toLocaleString()}</h1>
               <p className="flex gap-x-1">
-                <svg className="fill-[#959292] w-5" version="1.1" id="Filled_Icons" x="0px" y="0px" viewBox="0 0 24 24" enableBackground="new 0 0 24 24">
+                <svg
+                  className="fill-[#959292] w-5"
+                  version="1.1"
+                  id="Filled_Icons"
+                  x="0px"
+                  y="0px"
+                  viewBox="0 0 24 24"
+                  enableBackground="new 0 0 24 24"
+                >
                   <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
                   <g id="SVGRepo_tracerCarrier" strokeLinecap="round" strokeLinejoin="round"></g>
                   <g id="SVGRepo_iconCarrier">
@@ -52,12 +60,14 @@ const Page = async ({ params }) => {
             <LineBreak />
             <div className="space-y-5">
               <h2 className="text-2xl md:text-4xl text-main font-medium">Property Features</h2>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-x-5 gap-y-5">
-                {property.data.features.split(",").map((ft, _) => (
-                  <ul className="col-span-1 space-y-2 list-disc ps-[15px]" key={_}>
-                    <li className="text-main">{ft}</li>
-                  </ul>
-                ))}
+              <div className="">
+                <ul className=" grid grid-cols-2 md:grid-cols-3 gap-x-5 space-y-2 list-disc ps-[15px]">
+                  {property.data.features.split(",").map((ft, _) => (
+                    <li className="text-main col-span-1 " key={_}>
+                      {ft}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
             <LineBreak />

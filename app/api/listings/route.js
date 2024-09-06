@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/app/config/firebase";
 import COLLECTION from "../variables";
 import { format } from "date-fns";
+import { revalidateTag } from "next/cache";
 export async function GET(req, res) {
   try {
     const arr = [];
@@ -12,6 +13,8 @@ export async function GET(req, res) {
     // perform this snapshot loop on the client
     return NextResponse.json({ success: true, data: arr });
   } catch (e) {
+    console.log(e);
+    revalidateTag("listings");
     return NextResponse.json({ message: e.message, success: false });
   }
 }

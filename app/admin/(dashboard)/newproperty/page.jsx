@@ -11,6 +11,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { UploadProperty } from "@/app/client.utils";
 import { revalidateListingsAction } from "@/app/actions";
 import Spinner from "@/components/spinner";
+import DashboardNav from "@/components/dashboard-navbar";
 
 const NewProperty = () => {
   const [images, setImages] = useState([]);

@@ -35,7 +35,7 @@ const SchdeuleTour = ({ title }) => {
       ref={stickyRef}
       className={`${
         isSticky && "sticky top-0"
-      } border-gray lg:max-w-[600px] lg:ms-auto px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}
+      } border-gray lg:max-w-[600px] lg:ms-auto px-4 md:px-8 space-y-12 pt-[63px] shadow-[0px_4px_4px_rgba(0,0,0,0.25)]`}
     >
       <Toaster richColors />
       <div className="mx-auto w-fit py-3 px-6 border border-main text-2xl text-main rounded-[5px]">Schedule a Tour</div>

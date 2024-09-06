@@ -16,7 +16,7 @@ export const loginUser = async function (data) {
     const admin = await adminRef.get();
     if (!admin.exists || !bcrypt.compareSync(data.password, admin.data().password)) return { success: false, message: "invalid Credentials" };
     const { password, ...adminData } = admin.data();
-    await signIn("credentials", adminData);
+    await signIn("credentials", { ...adminData, redirect: false });
     return { success: true };
   } catch (e) {
     console.log(e);
