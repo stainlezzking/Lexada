@@ -11,7 +11,7 @@ export default function Error({ error, reset }) {
         <div className="mt-10 flex items-center justify-center gap-x-6">
           <button
             onClick={() => reset()}
-            className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+            className=" bg-white text-main py-[13px] px-[40px] rounded-[5px] mx-auto block w-fit hover:bg-main hover:text-primary"
           >
             Retry
           </button>
