@@ -12,6 +12,10 @@ export const generateMetadata = async ({ params }) => {
   };
 };
 
+export async function generateStaticParams() {
+  return [];
+}
+
 const Page = async ({ params }) => {
   let property = await getProperty(params.id);
   if (!property.success) {
