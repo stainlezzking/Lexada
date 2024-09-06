@@ -142,7 +142,9 @@ export default async function Home() {
               <Service
                 data-aos="fade-right"
                 title="Consultancy:"
-                content="Whether you're looking to buy new assets, or navigate complex market conditions, our team of experts will help you make informed decisions and achieve success."
+                content={
+                  "Whether you're looking to buy new assets, or navigate complex market conditions, our team of experts will help you make informed decisions and achieve success."
+                }
               >
                 <svg className="w-16" data-aos="flip-left" data-aos-delay="600" viewBox="0 0 66 66" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <rect width="66" height="66" className="fill-primary" />

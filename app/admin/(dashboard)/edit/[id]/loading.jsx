@@ -43,8 +43,8 @@ const Loading = () => {
       <div className="md:page-padding ">
         <main className="px-7 pt-[49px] border-x-2 border-x-gray">
           <div className="grid gap-y-10 grid-cols-1 md:grid-cols-2 gap-x-8 max-w-[1000px] h-screen items-stretch">
+            <div className="col-span-1 animate-pulse bg-slate-200 rounded-[8px] px-[23px] py-[20px] h-full"></div>
             <div className="col-span-1 animate-pulse bg-slate-300 rounded-[8px] px-[23px] py-[20px] h-full"></div>
-            <div className="col-span-1 animate-pulse bg-slate-400 rounded-[8px] px-[23px] py-[20px] h-full"></div>
           </div>
         </main>
       </div>
