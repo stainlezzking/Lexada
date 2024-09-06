@@ -9,7 +9,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         password: { label: "password", type: "password" },
       },
       authorize: async (credentials) => {
-        console.log("credentials", credentials);
         return credentials;
       },
     }),

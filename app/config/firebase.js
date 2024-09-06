@@ -1,7 +1,7 @@
 import { initializeApp, cert, getApps } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 
-import serviceAccount from "./firebase-admin.json";
+const serviceAccount = JSON.parse(Buffer.from(process.env.SERVICEACC_BUFFER, "base64").toString("utf-8"));
 
 if (!getApps().length) {
   initializeApp({
