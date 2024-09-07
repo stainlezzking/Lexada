@@ -1,10 +1,11 @@
 import { db } from "@/app/config/firebase";
 import { NextResponse } from "next/server";
-import COLLECTION from "../../variables";
-import { revalidatePath, revalidateTag } from "next/cache";
+import COLLECTION from "@/app/api/variables";
+import { revalidateTag } from "next/cache";
 
 export async function GET(req, res) {
   try {
+    console.log("this is the response, ", res.params);
     const data = await db.collection(COLLECTION.list).doc(res.params.id).get();
     if (!data.exists) return NextResponse.json({ success: false, message: "No property exists with this ID please go to the home page" });
     return NextResponse.json({ success: true, data: data.data() });

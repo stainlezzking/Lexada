@@ -16,7 +16,7 @@ const Page = () => {
       console.log("authticated", session);
       router.push("/admin/");
     }
-  }, [session]);
+  }, [session, router]);
   const [pending, setPending] = useState(false);
 
   const {

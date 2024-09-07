@@ -26,7 +26,7 @@ const EditProperty = ({ property }) => {
 
   useEffect(() => {
     setOldImages(property.images);
-  }, []);
+  }, [property.images]);
   const {
     register,
     handleSubmit,
