@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { UploadProperty } from "@/app/client.utils";
-import { revalidateListingsAction } from "@/app/actions";
+import { revalidateAllRoute } from "@/app/actions";
 import Spinner from "@/components/spinner";
 import DashboardNav from "@/components/dashboard-navbar";
 
@@ -18,7 +18,7 @@ const NewProperty = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(function () {
-    revalidateListingsAction();
+    revalidateAllRoute();
   }, []);
   const router = useRouter();
   const {
@@ -35,7 +35,7 @@ const NewProperty = () => {
       return toast.error("Images must be provided", { position: "top-right" });
     }
     const response = await UploadProperty(images, data);
-    await revalidateListingsAction();
+    await revalidateAllRoute();
     setIsSubmitting(false);
     if (!response.success) {
       return toast.error(response.message);

@@ -1,10 +1,9 @@
-import { getListings } from "@/app/utils";
-import Footer from "@/components/footer";
 import Listing from "@/components/listing";
 import Section from "@/components/section";
+import { getAllPropertiesFunction } from "@/server/functions";
 
 const Estates = async () => {
-  const properties = await getListings();
+  const properties = await getAllPropertiesFunction();
   return (
     <Section className="space-y-16">
       <div className="text-start">

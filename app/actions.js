@@ -4,11 +4,11 @@ import bcrypt from "bcryptjs";
 import { db } from "./config/firebase";
 import COLLECTION from "./api/variables";
 import { signIn } from "./auth";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { sendEmail } from "./config/nodemailer";
 import { contactUSEmailTemplate } from "@/components/emails/contact-us";
-import { getListings } from "./utils";
 import { sendInspectionRequest } from "@/components/emails/inspection-request";
+import { getAllPropertiesFunction } from "@/server/functions";
 
 export const loginUser = async function (data) {
   try {
@@ -35,15 +35,20 @@ export const loginUser = async function (data) {
 //   }
 // };
 
-export const revalidateListingsAction = async function () {
+export const revalidateAllRoute = async function () {
   // combined the listings because even when a listing is updated, you still have to
   // to update listings because of the preview information
   await revalidateTag("listings");
-  return { success: true, message: "Revalidated Listings tag" };
+  return { success: true, message: "Revalidated all routes" };
 };
 
+// export const revalidatePathAction = async function (path) {
+//   await revalidatePathAction(path);
+//   return { success: true, message: "Revalidated " + path };
+// };
+
 export const getTitlesofListings = async function () {
-  const properties = await getListings();
+  const properties = await getAllPropertiesFunction();
   if (!properties.success) return { success: false, message: "A problem occured! fetching properties" };
   return { success: true, data: properties.data.map((property) => property.title) };
 };

@@ -19,6 +19,7 @@ export async function PUT(req, res) {
   const newUpdate = await req.json();
   try {
     const data = await db.collection(COLLECTION.list).doc(res.params.id).update(newUpdate);
+    revalidateTag("listings");
     return NextResponse.json({ success: true, id: res.params.id });
   } catch (e) {
     return NextResponse.json({ success: false, message: "An error occured " + e.message });

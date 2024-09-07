@@ -1,9 +1,12 @@
-import { getListings } from "@/app/utils";
 import Link from "next/link";
 import Client from "./client";
+import { unstable_cache } from "next/cache";
+import COLLECTION from "@/app/api/variables";
+import { db } from "@/app/config/firebase";
+import { getAllPropertiesFunction } from "@/server/functions";
 
 const ServerStream = async () => {
-  const properties = await getListings();
+  const properties = await getAllPropertiesFunction();
   // handle error
   if (!properties) {
     return <div>505 Failed to load properties</div>;

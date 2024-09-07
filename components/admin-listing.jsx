@@ -21,7 +21,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { revalidateListingsAction } from "@/app/actions";
+import { revalidateAllRoute } from "@/app/actions";
 
 const AdminListing = ({ src, amount, title, createdAt, id, handleSetDelete }) => {
   const deleteProperty = async (id) => {
@@ -30,7 +30,7 @@ const AdminListing = ({ src, amount, title, createdAt, id, handleSetDelete }) =>
       next: { revalidate: true },
       method: "DELETE",
     });
-    await revalidateListingsAction();
+    await revalidateAllRoute();
     handleSetDelete(false);
   };
   return (

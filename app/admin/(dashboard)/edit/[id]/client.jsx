@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { deleteOldImagesFunction } from "./functions";
 import { UploadEditedProperty } from "@/app/client.utils";
-import { revalidateListingsAction } from "@/app/actions";
+import { revalidateAllRoute } from "@/app/actions";
 import DashboardNav from "@/components/dashboard-navbar";
 
 export const metadata = {
@@ -48,7 +48,7 @@ const EditProperty = ({ property }) => {
     }, {});
 
     const uploadResponse = await UploadEditedProperty(property.id, images, oldImages, deletedImages, newUpdate);
-    const revalidated = await revalidateListingsAction();
+    const revalidated = await revalidateAllRoute();
     setIsSubmitting(false);
     if (!uploadResponse.success) {
       return toast.error(uploadResponse.message);

@@ -16,7 +16,7 @@ const useSticky = (offset = 0) => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [offset, handleScroll]);
+  }, [offset]);
 
   return isSticky;
 };

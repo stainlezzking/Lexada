@@ -2,10 +2,10 @@ import LineBreak from "@/components/line.break";
 import SchdeuleTour from "@/components/schedule-tour";
 import ParseString from "@/components/parse.html.string";
 import Gallery from "@/components/details.images";
-import { getProperty } from "@/app/utils";
+import { getPropertyFunction } from "@/server/functions";
 
 export const generateMetadata = async ({ params }) => {
-  let property = await getProperty(params.id);
+  let property = await getPropertyFunction(params.id)();
   return {
     title: `${property.data.title} Properties with Lexada Realestate`,
     description: property.data.description,
@@ -17,7 +17,7 @@ export async function generateStaticParams() {
 }
 
 const Page = async ({ params }) => {
-  let property = await getProperty(params.id);
+  let property = await getPropertyFunction(params.id)();
   if (!property.success) {
     throw new Error(property.message);
     // handle with errorboundary
