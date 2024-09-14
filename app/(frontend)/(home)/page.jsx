@@ -184,7 +184,7 @@ export default async function Home() {
               </h1>
               <span>
                 Explore Our Exclusive Collection of Luxury Properties
-                <Link href="/listings" className="hover:underline text-indigo-700  text-sm">
+                <Link href="/estates" className="hover:underline text-indigo-700  text-sm">
                   View more
                 </Link>
               </span>
