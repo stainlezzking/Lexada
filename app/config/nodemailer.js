@@ -16,10 +16,10 @@ const sendEmail = async ({ subject, html }) => {
   try {
     const response = await transporter.sendMail({
       from: {
-        name: "Lexada Real Estate Properties Web APp",
+        name: "Lexada Real Estate Properties Web APP",
         address: process.env.NO_REPLY_EMAIL,
       },
-      to: "azukachukwuebuka07@gmail.com",
+      to: process.env.CONTACT_EMAIL,
       subject,
       html,
     });
